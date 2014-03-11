@@ -127,6 +127,7 @@ INSTALLED_APPS = (
     'apps.home',
     'apps.Personal',
     'apps.proveedores',
+    'apps.productos',
 )
 
 # A sample logging configuration. The only tangible logging

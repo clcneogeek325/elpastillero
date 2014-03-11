@@ -54,7 +54,7 @@
 													<td>{{ proveedor.compania}}</td>
 													<td>{{ proveedor.telefono}}</td>
 													<td>{{ proveedor.email}}</td>
-													<td><a class="btn" href="/ediProveedor/{{proveedor.id}}/"><i class="icon-pencil"></i>Actualizar</a></td>
+													<td><a class="btn" href="/editProveedor/{{proveedor.id}}/"><i class="icon-pencil"></i>Actualizar</a></td>
 												</tr>
 										
 											</tbody>

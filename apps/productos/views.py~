@@ -1,0 +1,15 @@
+from django.shortcuts import render_to_response
+from django.template import RequestContext
+
+def view_add_productos(request):
+	return render_to_response('productos/newProductos/addProductos.html',context_instance=RequestContext(request))
+
+def view_edit_productos(request):
+	return render_to_response('productos/newProductos/editProductos.html',context_instance=RequestContext(request))
+
+def view_rm_productos(request):
+	return render_to_response('productos/newProductos/rmProductos.html',context_instance=RequestContext(request))
+
+def view_add_mercancia(request):
+	return render_to_response('productos/existsProductos/addMercancia.html',context_instance=RequestContext(request))
+	

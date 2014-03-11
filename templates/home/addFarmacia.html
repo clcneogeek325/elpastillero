@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}
 	Agregar Inforormacio Acrca de la tienda
-	
+
 {% endblock %}
 
 {% block content %}
@@ -30,7 +30,7 @@
 						<ul class="nav nav-list">
 							<li class="nav-header"></li><br>
 								<p aling="justify">
-									<form action="." method="POST">
+									<form action="." method="POST" class="form-horizontal" role="form">
 									{% csrf_token %}
 									{{ form.as_p }}
 									<button class="btn btn-large btn-primary">Guardar Datos</button>

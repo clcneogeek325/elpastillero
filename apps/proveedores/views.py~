@@ -32,14 +32,24 @@ def view_edit_proveedor(request,id_proveedor):
 	if request.method == "GET":
 		formulario = ProveedorForm(initial={
 						'nombre':proveedor.nombre,
-						'apellidoPaterno':proveedor.apellidoMaterno,
-						'apellidoMaterno':proveedor.apellidoPaterno,
+						'apellido_Paterno':proveedor.apellido_Materno,
+						'apellido_Materno':proveedor.apellido_Paterno,
 						'compania':proveedor.compania,
 						'telefono':proveedor.telefono,
 						'email':proveedor.email,
 						})
 		ctx = {'form':formulario}
 		return render_to_response('proveedores/editProveedores.html',ctx,context_instance=RequestContext(request))
+	if request.method == "POST":
+		info = "informacion"
+		form = ProveedorForm(request.POST,request.FILES,instance=proveedor)
+		if form.is_valid():
+			add = form.save(commit=False)
+			add.status = True
+			add.save()
+			info = "Se guardo satisfactoriamente"
+			return HttpResponseRedirect('/listProveedoresEdit')
+		
 #	
 
 

@@ -1,13 +1,11 @@
-<!doctype>
-<html>
-	<head>
-		<title>
-			Este es el incio
-		</title>
-	</head>
-	<body>
+{% extends "base.html" %}
+{% block title %}
+	Esto es un acerca de
+{% endblock %}
+
+{% block content %}
 		<h1>
-			Este es el inicio
+			Esto es un acrca de
 		</h1>
-	</body>
-</html>
+{% endblock %}
+

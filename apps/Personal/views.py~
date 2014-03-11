@@ -26,15 +26,14 @@ def view_refresh_personal(request,id_personal):
 	if request.method == "GET":
 		formulario = addPersonalForm(initial={
 						'nombre':personal.nombre,
-						'apellidoPaterno':personal.apellidoMaterno,
-						'apellidoMaterno':personal.apellidoPaterno,
+						'apellido_Paterno':personal.apellidoMaterno,
+						'apellido_Materno':personal.apellidoPaterno,
 						'telefono':personal.telefono,
 						'email':personal.email,
 						})
 		ctx = {'personal':personal ,'form':formulario}
 		return render_to_response('personal/editPersonal.html',ctx,context_instance=RequestContext(request))
 	if request.method == "POST":
-		personal = Personal.objects.get(pk=id_farmacia)
 		info = "informacion"
 		form = addPersonalForm(request.POST,request.FILES,instance=personal)
 		if form.is_valid():

@@ -32,8 +32,8 @@ def view_edit_proveedor(request,id_proveedor):
 	if request.method == "GET":
 		formulario = ProveedorForm(initial={
 						'nombre':proveedor.nombre,
-						'apellidoPaterno':proveedor.apellidoMaterno,
-						'apellidoMaterno':proveedor.apellidoPaterno,
+						'apellido_Paterno':proveedor.apellido_Materno,
+						'apellido_Materno':proveedor.apellido_Paterno,
 						'compania':proveedor.compania,
 						'telefono':proveedor.telefono,
 						'email':proveedor.email,

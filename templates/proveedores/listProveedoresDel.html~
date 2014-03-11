@@ -56,7 +56,7 @@
 													<td>{{ proveedor.compania}}</td>
 													<td>{{ proveedor.telefono}}</td>
 													<td>{{ proveedor.email}}</td>
-													<td><a class="btn" href="/Proveedor/{{proveedor.id}}/"><i class="icon-remove"></i>Eliminar</a></td>
+													<td><a class="btn" href="/rmProveedor/{{proveedor.id}}/"><i class="icon-remove"></i>Eliminar</a></td>
 												</tr>
 										
 											</tbody>

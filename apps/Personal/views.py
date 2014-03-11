@@ -26,8 +26,8 @@ def view_refresh_personal(request,id_personal):
 	if request.method == "GET":
 		formulario = addPersonalForm(initial={
 						'nombre':personal.nombre,
-						'apellidoPaterno':personal.apellidoMaterno,
-						'apellidoMaterno':personal.apellidoPaterno,
+						'apellido_Paterno':personal.apellido_Materno,
+						'apellido_Materno':personal.apellido_Paterno,
 						'telefono':personal.telefono,
 						'email':personal.email,
 						})
