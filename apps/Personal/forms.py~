@@ -1,0 +1,10 @@
+from django import forms
+
+class addPersonalForm(forms.Form):
+	"""Formulario personal"""
+	nombre = forms.CharField()
+	apellidoPaterno = forms.CharField()
+	apellidoMaterno = forms.CharField()
+	telefono = forms.CharField()
+	email = forms.EmailField()
+	

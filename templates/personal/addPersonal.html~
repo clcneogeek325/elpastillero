@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}
+	Agregar Mas Personal
+{% endblock %}
+
+
+
+{% block content %}
+		<div class="container">
+			<div class="row">
+				<div class="hero-unit">
+					<h1>
+						Dar de alta al personal
+					</h1>
+					<small>Hola</small>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="span3">
+					<ul class="nav nav-list">
+						<li class="nav nav-header">Acciones</li>
+						<li  class="active"><a href="{% url vista_agregar_personal %}">Agregar</a></li>
+						<li><a href="{% url vista_lista_personal_eliminar %}">Eliminar</a></li>
+						<li><a href="{% url  vista_lista_personal_actualizar %}">Actualizar</a></li>
+					</ul>
+					
+				</div>
+				
+				<div class="span9">
+					<div class="well sidebar-nav">
+						<ul class="nav nav-list">
+							<li class="nav-header"></li><br>
+								<p aling="justify">
+									<form action="." method="POST">
+									{% csrf_token %}
+									{{ form.as_p }}
+									<button class="btn btn-primary">Agregar</button>
+									</form>
+								</p>
+						</ul>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+
+{% endblock %}
+

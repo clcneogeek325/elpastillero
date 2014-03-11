@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>{% block title %}
+					Farmacia y minisuper el pastillero
+				{% endblock %}
+		</title>
+		<link rel="stylesheet" href="/media/bootstrap/css/bootstrap.css"/>
+		<link rel="stylesheet" href="/media/bootstrap/css/bootstrap-responsive.css"/>
+		<script src="/media/bootstrap/js/bootstrap.js"></script>
+		<script src="/media/js/jquery-1.4.2.js" type="text/javascript"></script>
+		<script>
+		$(document).ready(function(){
+			$("#id_nombre").keyup(function(evento){
+			    var cadena=$("#id_nombre").attr("value");
+			    $("#id_direccion").attr("value",cadena);
+		});
+	});
+		</script>
+	</head>
+	<body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="navbar-inner">
+			<a class="brand" href="{% url vista_agregar_farmacia %}">El pastillero</a>
+		<ul class="nav">
+			<li><a href="{% url vista_agregar_personal %}">Personal</a></li>
+			<li><a href="{% url vista_agregar_proveedor  %}">Proveedores</a></li> 
+			<li><a href="{% url vista_agregar_nuevo_producto %}">Productos</a></li>
+			<li><a href="#">Ventas</a></li>
+			<li><a href="#">Extras</a></li>
+		</ul>
+	</div>
+</div>
+			
+		{% block content %}
+			
+		{% endblock %}
+				
+		
+<!--		<div class="container-fluid">-->
+<!--			<div class="row-fluid">-->
+<!--				</div>-->
+<!--				<div class="span9">-->
+<!--					<div class="hero-unit">-->
+<!--                aki va el block-->
+<!--					</div>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--		</div>-->
+
+	</body>
+</html>

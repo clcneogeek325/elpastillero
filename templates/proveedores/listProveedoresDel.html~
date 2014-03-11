@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}
+	Dar De Baja A Proveedores
+{% endblock %}
+
+{% block content %}
+		<div class="container">
+			<div class="row">
+				<div class="hero-unit">
+					<h1>
+						Dar de Baja A Proveedores
+					</h1>
+					<small>Hola</small>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="span3">
+					<ul class="nav nav-list">
+						<li class="nav nav-header">Acciones</li>
+						<li><a href="{% url vista_agregar_proveedor %}">Agregar</a></li>
+						<li class="active"><a href="{% url vista_lista_proveedores_eliminar %}">Eliminar</a></li>
+						<li><a href="{% url vista_lista_proveedores_actualizar %}">Actualizar</a></li>
+					</ul>
+					
+				</div>
+
+				
+								<div class="span9">
+					<div class="well sidebar-nav">
+						<ul class="nav nav-list">
+							<li class="nav-header"></li><br>
+								<p aling="justify">				
+									{% if lista_proveedores%}
+										<table class="table table-hover">
+											<theader>
+												<h1>
+													Lista De Proveedores
+												</h1>
+												<tr>
+													<td><h4>Nombre</h4</td>
+													<td><h4>Apelldo Paterno</h4</td>
+													<td><h4>Apellido Materno<h4</td>
+													<td><h4>Nombre de la Compania<h4</td>
+													<td><h4>Numero de Telefono<h4</td>
+													<td><h4>Correo Electronico<h4</td>
+												</tr>
+													
+											</theader>
+										{% for proveedor in lista_proveedores%}
+											<tbody>
+												<tr>
+													<td>{{ proveedor.nombre}}</td>
+													<td>{{ proveedor.apellidoPaterno}}</td>
+													<td>{{ proveedor.apellidoMaterno}}</td>
+													<td>{{ proveedor.compania}}</td>
+													<td>{{ proveedor.telefono}}</td>
+													<td>{{ proveedor.email}}</td>
+													<td><a class="btn" href="/Proveedor/{{proveedor.id}}/"><i class="icon-remove"></i>Eliminar</a></td>
+												</tr>
+										
+											</tbody>
+										{% endfor %}
+										</table>
+									{% else%}
+										<p>No se han agregado datos de ningun empleado</p>
+									{% endif%}
+								</p>
+						</ul>
+						
+					</div>
+				</div>
+				
+			</div>
+		</div>
+
+{% endblock %}

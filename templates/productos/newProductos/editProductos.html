@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}
+	Actualizando datos de un producto
+{% endblock %}
+
+
+{% block content %}
+		<div class="container">
+			<div class="row">
+				<div class="hero-unit">
+					<h1>
+						Actualizar datos de un producto
+					</h1>
+					<small>Hola</small>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="span3">
+					<ul class="nav nav-list">
+						<li class="nav nav-header">Existente</li>
+						<li><a href="{% url vista_gregar_mercancia %}">Agregar Mercancia</a></li>
+					</ul>
+					<ul class="nav nav-list">
+						<li class="nav nav-header">Nuevo</li>
+						<li><a href="{% url  vista_agregar_nuevo_producto %}">Agregar</a></li>
+						<li><a href="{% url  vista_eliminar_producto %}">Eliminar</a></li>
+						<li class="active"><a href="{% url  vista_actualizar_producto %}">Actualizar</a></li>
+					</ul>
+					
+				</div>
+				<div class="span9">
+					<img src="/media/img/Linux-Python.png"/>		
+				</div>
+			</div>
+		</div>
+
+{% endblock %}
+

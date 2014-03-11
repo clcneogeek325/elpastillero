@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}
+	Actualizando los datos de la farmacia
+{% endblock %}
+
+{% block content %}
+		<div class="container">
+			<div class="row">
+				<div class="hero-unit">
+					<h1>
+						Actualizando los datos d ela farmacia
+					</h1>
+					<small>Hola</small>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="span3">
+					<ul class="nav nav-list">
+						<li class="nav nav-header">Acciones</li>
+						<li><a href="{% url vista_agregar_farmacia %}">Agregar</a></li>
+						<li class="active"><a href="{% url  vista_lista_farmacia %}">Actualizar</a></li>
+					</ul>
+					
+				</div>
+				
+				<div class="span5">
+					<div class="well sidebar-nav">
+						<ul class="nav nav-list">
+							<li class="nav-header"></li><br>
+								<p aling="justify">
+									<form action="." method="POST">
+									{% csrf_token %}
+									{{ form.as_p }}
+									<button class="btn btn-large btn-primary">Actualizar</button>
+									</form>
+								</p>
+						</ul>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+
+{% endblock %}
+

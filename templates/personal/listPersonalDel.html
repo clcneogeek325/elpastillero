@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}
+	Eliminando Personal
+{% endblock %}
+
+{% block content %}
+		<div class="container">
+			<div class="row">
+				<div class="hero-unit">
+					<h1>
+						Dar de baja al personal
+					</h1>
+					<small>Hola</small>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="span3">
+					<ul class="nav nav-list">
+						<li class="nav nav-header">Acciones</li>
+						
+						<li><a href="{% url vista_agregar_personal %}">Agregar</a></li>
+						<li  class="active"><a href="{% url vista_lista_personal_eliminar %}">Eliminar</a></li>
+						<li><a href="{% url  vista_lista_personal_actualizar %}">Actualizar</a></li>
+					</ul>
+					
+				</div>
+				
+				<div class="span9">
+					<div class="well sidebar-nav">
+						<ul class="nav nav-list">
+							<li class="nav-header"></li><br>
+								<p aling="justify">				
+									{% if lista_personal%}
+										<table class="table table-hover">
+											<theader>
+												<h1>
+													Lista De Empleados
+												</h1>
+												<tr>
+													<td><h4>Nombre</h4</td>
+													<td><h4>Apelldo Paterno</h4</td>
+													<td><h4>Apellido Materno<h4</td>
+												</tr>
+													
+											</theader>
+										{% for empleado in lista_personal%}
+											<tbody>
+												<tr>
+													<td>{{ empleado.nombre}}</td>
+													<td>{{ empleado.apellidoPaterno}}</td>
+													<td>{{ empleado.apellidoMaterno}}</td>
+													<td><a class="btn" href="/rmPersonal/{{empleado.id}}/"><i class="icon-remove"></i>Eliminar</a></td>
+												</tr>
+										
+											</tbody>
+										{% endfor %}
+										</table>
+									{% else%}
+										<p>No se han agregado datos de ningun empleado</p>
+									{% endif%}
+								</p>
+						</ul>
+						
+					</div>
+				</div>
+				
+			</div>
+		</div>
+
+{% endblock %}i
+
