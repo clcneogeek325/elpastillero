@@ -34,20 +34,9 @@
 				<div class="span9">
 					<div class="well sidebar-nav">
 						<ul class="nav nav-list">
-							<li class="nav-header"></li><br>
-							{{ csrf_token}}
-								<form action="." method="POST">
-								<p>Codigo Del Producto</p><br>
-								{{form.codigo}}<br>
-								<p>Nombre del producto</p><br>
-								{{form.nombre_producto}}<br>
-								<p>Nombre de la Compania</p><br>
-								{{form.nombre_compania}}<br>
-								<p>Nombre proveedor</p><br>
-								{{form.nombre_proveedor}}<br>
-									<button class="btn btn-large btn-primary">Agregar</button>
-									</form>
-								</p>
+						<h1>{{ mensaje }}</h1>
+						<button class="btn btn-primary">Agregar Mercancia</button>
+							<button class="btn btn-primary">Agregar Mercancia</button>
 						</ul>
 				</div>
 			</div>

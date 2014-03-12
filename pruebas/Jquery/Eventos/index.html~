@@ -1,0 +1,30 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<title>Primer script con jQuery</title>
+		<script src="js/jquery-1.4.2.js" type="text/javascript"></script>
+			<script>
+				$(document).ready(function(){
+					$("#txt").keypress(function(evento){
+					    alert("Se ha presionado una tecla");
+					});
+					$("#txt").keydown(function(evento){
+					    alert("Se ha presionado una tecla");
+					});
+					$("#txt").keyup(function(evento){
+					    alert("Se ha despresionado una tecla");
+					});
+				});
+			</script>
+	</head>
+	<body>
+	<center>
+	<h1>
+		Ejemplo sobre eventos del teclado en jquery
+		
+	</h1>
+			<p><input type="input" value="" id="txt"/></p>
+	</center>
+	</body>
+</html>
+

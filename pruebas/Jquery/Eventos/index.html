@@ -1,0 +1,30 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<title>Primer script con jQuery</title>
+		<script src="js/jquery-1.4.2.js" type="text/javascript"></script>
+			<script>
+				$(document).ready(function(){
+					$("#txt2").keyup(function(evento){
+					var numero1=$("#txt1").attr("value");
+					var numero2=$("#txt2").attr("value");
+					$("#txt3").attr("value",numero1*numero2);
+					});
+				});
+			</script>
+	</head>
+	<body>
+	<center>
+	<h1>
+		Ejemplo sobre eventos del teclado en jquery
+		
+	</h1>
+			<p><input type="input" value="" id="txt1"/></p>
+			
+			<p><input type="input" value="" id="txt2"/></p>
+			
+			<p><input type="input" value="" id="txt3"/></p>
+	</center>
+	</body>
+</html>
+

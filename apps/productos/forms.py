@@ -1,11 +1,11 @@
 from django import forms
-from apps.Personal.models import Personal
+from apps.productos.models import Producto
 
 
 
-class addPersonalForm(forms.ModelForm):
+class ProductoForm(forms.ModelForm):
 	class Meta:
-		model = Personal
+		model = Producto
 		exclude = {'status',}
 
 
