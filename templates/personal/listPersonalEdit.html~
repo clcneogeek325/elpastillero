@@ -46,7 +46,7 @@
 													<td>{{ empleado.telefono}}</td>
 													<td>{{ empleado.email}}</td>
 													<td><a class="btn" href="/editPersonal/{{empleado.id}}/"><i class="icon-pencil"></i>Editar</a></td>
-													<td><a class="btn" href="empleado.user_id"><i class="icon-thumbs-up"></i>Cambiar Comtrasenia</a></td>
+													<td><a class="btn" href="{{empleado.user_id}}"><i class="icon-thumbs-up"></i>Cambiar Comtrasenia</a></td>
 												</tr>
 										
 											</tbody>

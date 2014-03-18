@@ -12,4 +12,6 @@ class UserForm(forms.Form):
 	user = forms.CharField(label="Nombre Usuario",widget=forms.TextInput())
 	password = forms.CharField(label="Contrasenia ",widget=forms.PasswordInput())
 	
-
+class ChangePasswdForm(forms.Form):
+	password = forms.CharField(label="Escribe la nueva Contrasenia",widget=forms.PasswordInput())
+	

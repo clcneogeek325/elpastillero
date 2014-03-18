@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}
-	Agregar Mas Personal
+	Cambiar contrasenia de un suario
 {% endblock %}
 
 {% block content %}
@@ -8,8 +8,7 @@
 			<div class="row">
 				<div class="hero-unit">
 					<h1>
-						Dar de alta al personal
-					</h1>
+						Cambiar la contrasenia de un usuario
 					<small>Hola</small>
 				</div>
 			</div>
@@ -21,10 +20,11 @@
 						<ul class="nav nav-list">
 							<li class="nav-header"></li><br>
 								<p aling="justify">
-									{{msg}}<br>
-									<a href="{% url  vista_agregar_personal %}"><button class="btn btn-primary btn-large">Agregar Otro Usuario</button></a>
-									
-									
+									<form action="." method="POST">
+									{% csrf_token %}
+									{{ form_user.as_p }}
+									<button class="btn btn-large btn-primary">Agregar</button>
+									</form>
 								</p>
 						</ul>
 						

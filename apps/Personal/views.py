@@ -5,7 +5,29 @@ from apps.Personal.models import Personal
 from django.contrib.auth.models import User
 
 from django.http import HttpResponseRedirect
-from apps.Personal.forms import UserForm
+from apps.Personal.forms import UserForm,ChangePasswdForm
+
+
+def view_change_paswd(request,id_user):
+	if request.method == "POST":
+		form = ChangePasswdForm(request.POST)
+		if form.is_valid():
+			us = User.objects.get(pk=id_user)
+			nueva_pass = form.cleaned_data['password']
+			us.set_password(nueva_pass)
+			us.save()
+			msg = "La contrasenia se ha cambiado con exito"
+			url = "/listPersonalEdit/"
+			titulo = "Cambiando contrasenia"
+			ctx = {'msg':msg,
+				   'url':url,
+				   'titulo':titulo}
+			return render_to_response('personal/mensaje.html',ctx,context_instance=RequestContext(request))
+	else:
+		form = ChangePasswdForm()
+		ctx = {'form':form}
+	return render_to_response('personal/cambiarpasswd.html',ctx,context_instance=RequestContext(request))
+
 
 def view_add_personal(request):
 	info = "informacion"
@@ -24,7 +46,11 @@ def view_add_personal(request):
 			addp.save()
 			info = "Se guardo satisfactoriamente"
 			status_agregar = "active"
+			titulo = "Dal de alta a nuevos empleados"
+			url = "/addPersonal/"
 			ctx = {'status_agregar':status_agregar,
+			'titulo':titulo,
+			'url':url,
 			'msg':info}
 			return render_to_response('personal/mensaje.html',ctx,context_instance=RequestContext(request))
 	else:
