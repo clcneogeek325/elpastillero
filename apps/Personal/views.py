@@ -40,10 +40,16 @@ def view_add_personal(request):
 			nombre_usuario = form_user.cleaned_data['user']
 			contrasenia =  form_user.cleaned_data['password']
 			correo = addp.email
+			nombre = addp.nombre
+			apellidos = "%s %s"%(addp.apellido_Paterno,addp.apellido_Materno)
 			u = User.objects.create_user(username=nombre_usuario,email=correo,password=contrasenia)
 			u.save()
 			addp.user_id=u.id
 			addp.save()
+			usuario = User.objects.get(pk=u.id)
+			usuario.first_name = nombre
+			usuario.last_name = apellidos
+			usuario.save()
 			info = "Se guardo satisfactoriamente"
 			status_agregar = "active"
 			titulo = "Dal de alta a nuevos empleados"
@@ -84,8 +90,12 @@ def view_refresh_personal(request,id_personal):
 
 def view_delete_personal(request,id_personal):
 	mensaje = "El registro se ha elliminado correctamente"
-	personal = Personal.objects.filter(id=id_personal)
-	personal.delete()
+	personal = Personal.objects.get(id=id_personal)
+	personal.status = False
+	personal.save()
+	u = User.objects.get(pk=personal.user_id)
+	u.is_active = False
+	u.save()
 	status_eliminar = "active"
 	ctx = {'mensaje':mensaje,'status_eliminar':status_eliminar}
 	return render_to_response('personal/rmPersonal.html',context_instance=RequestContext(request))

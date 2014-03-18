@@ -10,7 +10,7 @@
 					<h1>
 						Dar de alta al personal
 					</h1>
-					<small>Hola</small>
+					<small>Hola {{ user.first_name}}  {{ user.last_name}} {{ user.id}}bienvendo al sistema</small>
 				</div>
 			</div>
 			
