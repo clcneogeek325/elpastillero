@@ -10,6 +10,6 @@ class Personal(models.Model):
 	status = models.BooleanField(default=True)
 	
 	def __unicode__(self):
-		nombbreCompleto = "%s %s %s" % (self.nombre,self.apellidoPaterno,self.apellidoMaterno)
+		nombbreCompleto = "%s %s %s" % (self.nombre,self.apellido_Paterno,self.apellido_Materno)
 		return nombbreCompleto
 

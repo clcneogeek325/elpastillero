@@ -15,12 +15,13 @@ def view_add_personal(request):
 		if form_personal.is_valid() and form_user.is_valid():
 			addp = form_personal.save(commit=False)
 			addp.status = True
-			addp.save()
 			nombre_usuario = form_user.cleaned_data['user']
 			contrasenia =  form_user.cleaned_data['password']
 			correo = addp.email
 			u = User.objects.create_user(username=nombre_usuario,email=correo,password=contrasenia)
 			u.save()
+			addp.user_id=u.id
+			addp.save()
 			info = "Se guardo satisfactoriamente"
 			status_agregar = "active"
 			ctx = {'status_agregar':status_agregar,
@@ -38,13 +39,7 @@ def view_add_personal(request):
 def view_refresh_personal(request,id_personal):
 	personal = Personal.objects.get(id=id_personal)
 	if request.method == "GET":
-		formulario = addPersonalForm(initial={
-						'nombre':personal.nombre,
-						'apellido_Paterno':personal.apellido_Paterno,
-						'apellido_Materno':personal.apellido_Materno,
-						'telefono':personal.telefono,
-						'email':personal.email,
-						})
+		formulario = addPersonalForm(instance=personal)
 		status_actualizar = "active"
 		ctx = {'personal':personal ,'form':formulario,'status_actualizar':status_actualizar}
 		return render_to_response('personal/editPersonal.html',ctx,context_instance=RequestContext(request))
@@ -59,7 +54,7 @@ def view_refresh_personal(request,id_personal):
 			status_actualizar = "active"
 			lista_personal = Personal.objects.filter(status=True)
 			ctx={'lista_personal':lista_personal,'status_actualizar':status_actualizar}
-			return render_to_response('personal/listPersonalDel.html',ctx,context_instance=RequestContext(request))
+			return render_to_response('personal/listPersonalEdit.html',ctx,context_instance=RequestContext(request))
 
 def view_delete_personal(request,id_personal):
 	mensaje = "El registro se ha elliminado correctamente"

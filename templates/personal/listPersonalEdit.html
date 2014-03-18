@@ -32,6 +32,8 @@
 													<td><h4>Nombre</h4></td>
 													<td><h4>Apelldo Paterno</h4></td>
 													<td><h4>Apellido Materno<h4></td>
+													<td><h4>Telefono<h4></td>
+													<td><h4>Email<h4></td>
 												</tr>
 													
 											</theader>
@@ -41,7 +43,10 @@
 													<td>{{ empleado.nombre}}</td>
 													<td>{{ empleado.apellido_Paterno}}</td>
 													<td>{{ empleado.apellido_Materno}}</td>
+													<td>{{ empleado.telefono}}</td>
+													<td>{{ empleado.email}}</td>
 													<td><a class="btn" href="/editPersonal/{{empleado.id}}/"><i class="icon-pencil"></i>Editar</a></td>
+													<td><a class="btn" href="{{empleado.user_id}}"><i class="icon-thumbs-up"></i>Cambiar Comtrasenia</a></td>
 												</tr>
 										
 											</tbody>
