@@ -8,7 +8,10 @@ class addPersonalForm(forms.ModelForm):
 		model = Personal
 		exclude = {'status',}
 
-
+class UserForm(forms.Form):
+	user = forms.CharField(label="Nombre Usuario",widget=forms.TextInput())
+	password = forms.CharField(label="Contrasenia ",widget=forms.TextInput())
+	
 
 #	"""Formulario personal"""
 #	nombre = forms.CharField()

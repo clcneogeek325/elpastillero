@@ -21,12 +21,10 @@
 						<ul class="nav nav-list">
 							<li class="nav-header"></li><br>
 								<p aling="justify">
-									<form action="." method="POST">
-									{% csrf_token %}
-									{{ form_user.as_p }}
-									{{ form_personal.as_p }}
-									<button class="btn btn-large btn-primary">Agregar</button>
-									</form>
+									{{msg}}<br>
+									<a href="{% url  vista_agregar_personal %}"><button class="btn btn-primary btn-large">Agregar Otro Usuario</button></a>
+									
+									
 								</p>
 						</ul>
 						
