@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}
+	{{titulo}}
+{% endblock %}
+
+{% block content %}
+		<div class="container">
+			<div class="row">
+				<div class="hero-unit">
+					<h1>
+						{{titulo}}
+					</h1>
+					<small>Hola</small>
+				</div>
+			</div>
+			
+			<div class="row">
+				{% include 'proveedores/barraLateralIzquierda.html' %}
+				<div class="span9">
+					<div class="well sidebar-nav">
+						<ul class="nav nav-list">
+							<li class="nav-header"></li><br>
+								<p aling="justify">
+								<p>proveedor.nombre</p><br>
+								<p>proveedor.apellidoPaterno</p>
+								<p>proveedor.apellidoPaterno</p>
+								<p>{% for comp in companias %}
+										<p>comp</p>
+								{% endfor %}
+								</p>
+								</p>
+						</ul>
+						
+					</div>
+				</div>
+				
+			</div>
+		</div>
+
+{% endblock %}

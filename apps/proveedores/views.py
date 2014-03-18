@@ -6,6 +6,15 @@ from apps.proveedores.models import Proveedores
 from django.http import HttpResponseRedirect
 
 
+titulo_add = "Agregar un nuevo proveedor"
+titulo_edit = "Actulizar datos de un proveedor"
+titulo_del = "Eliminar un proveedor"
+
+
+msg_add = "El registro se ha agregado correctamente"
+msg_edit = "El registro se ha actualizado"
+msg_del = "El registro se ha eliminado"
+
 def view_add_proveedor(request):
 	info = "informacion"
 	if request.method == "POST":
@@ -14,31 +23,46 @@ def view_add_proveedor(request):
 			add = form.save(commit=False)
 			add.status = True
 			add.save()
-			info = "Se guardo satisfactoriamente"
-			return HttpResponseRedirect('/addProveedores/')
+			formulario = ProveedorForm()
+			url = "/addProveedores"
+			status_agregar = "active"
+			msg_btn = "Agregar otro proveedor"
+			ctx={'status_agregar':status_agregar,
+				 'titulo':titulo_add,
+				 'mensaje':msg_add,
+				 'url':url ,
+				 'msg_btn':msg_btn}
+			return render_to_response('proveedores/mensajes.html',ctx,
+					context_instance=RequestContext(request))
 	else:
 		formulario = ProveedorForm()
-		ctx={'form':formulario}
-		return render_to_response('proveedores/addProveedores.html',ctx,context_instance=RequestContext(request))
+		status_agregar = "active"
+		ctx={'form':formulario,
+			 'status_agregar':status_agregar}
+		return render_to_response('proveedores/addProveedores.html',ctx,
+					context_instance=RequestContext(request))
 		
 		
 def view_delete_proveedor(request,id_proveedor):
 	p = Proveedores.objects.filter(id=id_proveedor)
 	p.delete()
-	return render_to_response('proveedores/rmProveedores.html',context_instance=RequestContext(request))
+	status_eliminar = "active"
+	msg_btn = "Regresar a la lista"
+	url = "/listProveedoresDel"
+	ctx = {'mensaje':msg_del,
+		   'titulo':titulo_del,
+		   'url':url,
+		   'msg_btn':msg_btn,
+		   'status_eliminar':status_eliminar}
+	return render_to_response('proveedores/mensajes.html',ctx,
+					context_instance=RequestContext(request))
 
 def view_edit_proveedor(request,id_proveedor):
 	proveedor = Proveedores.objects.get(id=id_proveedor)
 	if request.method == "GET":
-		formulario = ProveedorForm(initial={
-						'nombre':proveedor.nombre,
-						'apellido_Paterno':proveedor.apellido_Materno,
-						'apellido_Materno':proveedor.apellido_Paterno,
-						'compania':proveedor.compania,
-						'telefono':proveedor.telefono,
-						'email':proveedor.email,
-						})
-		ctx = {'form':formulario}
+		formulario = ProveedorForm(instance=proveedor)
+		status_actualizar = "active"
+		ctx = {'form':formulario,'status_actualizar':status_actualizar}
 		return render_to_response('proveedores/editProveedores.html',ctx,context_instance=RequestContext(request))
 	if request.method == "POST":
 		info = "informacion"
@@ -49,18 +73,20 @@ def view_edit_proveedor(request,id_proveedor):
 			add.save()
 			info = "Se guardo satisfactoriamente"
 			return HttpResponseRedirect('/listProveedoresEdit')
-		
-#	
 
 
 
 def view_list_proveedores_edit(request):
 	proveedor = Proveedores.objects.filter(status=True)
-	ctx={'lista_proveedores':proveedor}
+	status_actualizar = "active"
+	ctx={'lista_proveedores':proveedor,
+		 'status_actualizar':status_actualizar}
 	return render_to_response('proveedores/listProveedoresEdit.html',ctx,context_instance=RequestContext(request))
 
 def view_list_proveedores_delete(request):
-	proveedor = Proveedores.objects.filter(status=True)
-	ctx={'lista_proveedores':proveedor}
+	provs = Proveedores.objects.filter(status=True) 
+	status_eliminar = "active"
+	ctx={'lista_proveedores':provs,
+		 'status_eliminar':status_eliminar}
 	return render_to_response('proveedores/listProveedoresDel.html',ctx,context_instance=RequestContext(request))
 	

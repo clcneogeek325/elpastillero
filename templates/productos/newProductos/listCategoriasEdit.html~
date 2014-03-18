@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}
+	Actualizando datos de un producto
+{% endblock %}
+
+
+{% block content %}
+		<div class="container">
+			<div class="row">
+				<div class="hero-unit">
+					<h1>
+							Actualizando datos de un producto
+					</h1>
+					<small>Hola</small>
+				</div>
+			</div>
+			
+			<div class="row">
+			{% include 'productos/newProductos/barraLateralIzquierda.html' %}
+
+				<div class="span9">
+					<div class="well sidebar-nav">
+						<ul class="nav nav-list">
+							<li class="nav-header"></li><br>
+								<p aling="justify">
+									{% if lista_categorias %}
+										<table class="table table-bordered">
+												<theader>
+													<h1>
+														Lista de Categorias
+													</h1>
+													<tr>
+														<td><h4>Companias</h4></td>
+													</tr>
+													
+												</theader>
+										{% for categoria in lista_categorias %}
+												<tbody>
+													<tr>
+														<td> {{categoria.nombre_categoria}}</td>
+														
+														<td><a class="btn" href=""><i class="icon-remove"></i>Mostrar Todos</a></td>
+													</tr>
+												</tbody>
+										{% endfor %}
+										</table>
+									{% else %}
+										<p>No hay Categoras agrgadas</p>
+									{% endif %}
+								</p>
+						</ul>
+						
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+{% endblock %}
+

@@ -16,21 +16,15 @@
 			</div>
 			
 			<div class="row">
-				<div class="span3">
-					<ul class="nav nav-list">
-						<li class="nav nav-header">Acciones</li>
-						<li class="active"><a href="{% url vista_agregar_farmacia %}">Agregar</a></li>
-						<li><a href="{% url  vista_lista_farmacia %}">Actualizar</a></li>
-					</ul>
-					
-				</div>
+
+			{% include 'barraLateralIzquierdo.html' %}
 				
 				<div class="span5">
 					<div class="well sidebar-nav">
 						<ul class="nav nav-list">
 							<li class="nav-header"></li><br>
 								<p aling="justify">
-									<form action="." method="POST">
+									<form action="." method="POST" class="form-horizontal" role="form">
 									{% csrf_token %}
 									{{ form.as_p }}
 									<button class="btn btn-large btn-primary">Guardar Datos</button>

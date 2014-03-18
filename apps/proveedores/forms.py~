@@ -6,8 +6,7 @@ class ProveedorForm(forms.ModelForm):
 	class Meta:
 		model = Proveedores
 		exclude = {'status',}
-
-
+	
 #	nombre = forms.CharField(max_length=200)
 #	apellidoPaterno = forms.CharField( max_length=200)
 #	apellidoMaterno = forms.CharField( max_length=200)

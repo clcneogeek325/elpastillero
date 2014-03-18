@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}
+	Agregar nuevas categorias de productos
+{% endblock %}
+
+{% block content %}
+		<div class="container">
+			<div class="row">
+				<div class="hero-unit">
+					<h1>
+						Dar de alta a nuevas categorias
+					</h1>
+					<small>Hola</small>
+				</div>
+			</div>
+			
+			<div class="row">
+			{% include 'productos/newProductos/barraLateralIzquierda.html'%}
+				<div class="span9">
+					<div class="well sidebar-nav">
+						<ul class="nav nav-list">
+							<li class="nav-header"></li><br>
+								<form action="." method="POST">
+								{% csrf_token %}
+								{{ form.as_p }}
+									<button class="btn btn-large btn-primary">Agregar</button>
+									</form>
+								{% if lista_categorias%}
+										<table class="table table-hover">
+											<theader>
+												<h1>
+													Lista De Categorias
+												</h1>
+												<tr>
+													<td><h4>Nombre</h4</td>
+												</tr>
+													
+											</theader>
+										{% for categoria in lista_categorias%}
+											<tbody>
+												<tr>
+													<td>{{ categoria.nombre_categoria}}</td>
+													<td><a class="btn" href="/editCategoria/{{categoria.id}}/"><i class="icon-pencil"></i>Editar</a></td>
+													<td><a class="btn" href="/rmCategoria/{{categoria.id}}/"><i class="icon-remove"></i>Eliminar</a></td>
+												</tr>
+										
+											</tbody>
+										{% endfor %}
+										</table>
+									{% else%}
+										<p>No se han agregado nunguna categoria</p>
+									{% endif%}
+								</p>
+						</ul>
+				</div>
+			</div>
+		</div>
+
+{% endblock %}
+

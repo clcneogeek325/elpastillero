@@ -30,7 +30,7 @@
 				<h1>
 					El registro se ha eliminado correctamente
 					<div class="span5">
-						<a href="{% url vista_lista_personal_eliminar %}"><button class="btn btn-primary">Regregar Al la lista</button></a>
+						<a href="{% url vista_lista_personal_eliminar %}"><button class="btn btn-large btn-primary">Regregar Al la lista</button></a>
 						
 					</div>
 				</h1>

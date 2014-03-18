@@ -1,0 +1,17 @@
+<div class="span3">
+	<ul class="nav nav-list">
+		<li class="nav nav-header">Categorias</li>
+		<li class="{{ status_add_categoria }}"><a href="{% url  vista_agregar_categoria %}">Agregar Categoria</a></li>
+	<ul class="nav nav-list">
+		<li class="nav nav-header">Nuevo</li>
+		<li class="{{ status_add_producto }}"><a href="{% url vista_agregar_nuevo_producto %}">Dar de Alta</a></li>
+		<li class=" {{ status_del_producto }} " ><a href="{% url vista_obtener_codigo_eliminar %}">Dar de baja productos</a></li>
+		<li class=" {{ status_edit_producto}}" ><a href="{% url  vista_obtener_codigo_actualizar %}">Actualizar datos de un producto</a></li>
+	</ul>
+	</ul>
+	<ul class="nav nav-list">
+		<li class="nav nav-header">Consultar</li>
+		<li class="{{ status_add_mercancia }}"><a href="{% url vista_gregar_mercancia %}">Consultar datos de un producto</a></li>
+	</ul>
+
+</div>

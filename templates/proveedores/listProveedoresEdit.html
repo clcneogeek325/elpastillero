@@ -15,15 +15,7 @@
 			</div>
 			
 			<div class="row">
-				<div class="span3">
-					<ul class="nav nav-list">
-						<li class="nav nav-header">Acciones</li>
-						<li><a href="{% url vista_agregar_proveedor %}">Agregar</a></li>
-						<li><a href="{% url vista_lista_proveedores_eliminar %}">Eliminar</a></li>
-						<li class="active"><a href="{% url  vista_lista_proveedores_actualizar %}">Actualizar</a></li>
-					</ul>
-					
-				</div>
+				{% include 'proveedores/barraLateralIzquierda.html' %}
 				<div class="span9">
 					<div class="well sidebar-nav">
 						<ul class="nav nav-list">
@@ -39,9 +31,6 @@
 													<td><h4>Nombre</h4</td>
 													<td><h4>Apelldo Paterno</h4</td>
 													<td><h4>Apellido Materno<h4</td>
-													<td><h4>Nombre de la Compania<h4</td>
-													<td><h4>Numero de Telefono<h4</td>
-													<td><h4>Correo Electronico<h4</td>
 												</tr>
 													
 											</theader>
@@ -51,9 +40,6 @@
 													<td>{{ proveedor.nombre}}</td>
 													<td>{{ proveedor.apellido_Paterno}}</td>
 													<td>{{ proveedor.apellido_Materno}}</td>
-													<td>{{ proveedor.compania}}</td>
-													<td>{{ proveedor.telefono}}</td>
-													<td>{{ proveedor.email}}</td>
 													<td><a class="btn" href="/editProveedor/{{proveedor.id}}/"><i class="icon-pencil"></i>Actualizar</a></td>
 												</tr>
 										

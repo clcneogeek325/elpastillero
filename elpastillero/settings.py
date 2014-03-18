@@ -1,3 +1,4 @@
+
 # Django settings for elpastillero project.
 import os
 
@@ -28,11 +29,11 @@ DATABASES = {
 # timezone as the operating system.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'America/Lima'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-PE'
 
 SITE_ID = 1
 
@@ -127,7 +128,10 @@ INSTALLED_APPS = (
     'apps.home',
     'apps.Personal',
     'apps.proveedores',
+    'apps.categoria',
+    'apps.compania',
     'apps.productos',
+    'apps.mercancia',
 )
 
 # A sample logging configuration. The only tangible logging

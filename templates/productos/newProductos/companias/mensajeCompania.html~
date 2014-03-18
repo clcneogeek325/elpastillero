@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}
+	{{titulo}}
+{% endblock %}
+
+{% block content %}
+		<div class="container">
+			<div class="row">
+				<div class="hero-unit">
+					<h1>
+						{{titulo}}
+					</h1>
+					<small>Hola</small>
+				</div>
+			</div>
+			
+			<div class="row">
+			{% include 'productos/newProductos/barraLateralIzquierda.html' %}
+				<div class="span9">
+					<div class="well sidebar-nav">
+						<ul class="nav nav-list">
+						<h1>{{ mensaje }}</h1>
+						<a href="{% url  vista_agregar_compania %}"><button class="btn btn-primary btn-large">Regresar a la lista</button></a>
+						</ul>
+				</div>
+			</div>
+		</div>
+
+{% endblock %}
+

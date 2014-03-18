@@ -1,0 +1,10 @@
+<div class="span3">
+	<ul class="nav nav-list">
+		<li class="nav nav-header">Acciones</li>
+		{% if no_hay_nunguno %}
+		<li class="{{status_add}}"><a href="{% url vista_agregar_farmacia %}">Agregar</a></li>	
+		{% endif %}
+		
+		<li class="{{ status_lista}}"><a href="{% url  vista_lista_farmacia %}">Actualizar</a></li>
+	</ul>
+</div>

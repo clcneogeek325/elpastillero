@@ -2,8 +2,10 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from apps.home.models import Farmacia
 from apps.home.forms import FarmaciaForm
-
 from django.http import HttpResponseRedirect
+
+def obtenerFarmacias():
+	return Farmacia.objects.filter(status=True)
 
 def index_view(request):
 	return render_to_response('index.html',context_instance=RequestContext(request))
@@ -11,24 +13,41 @@ def index_view(request):
 def about_view(request):
 	return render_to_response('about.html',context_instance=RequestContext(request))
 
-def view_add_farmacia(request):
-	info = "informacion"
-	if request.method == "POST":
-		form = FarmaciaForm(request.POST,request.FILES)
-		if form.is_valid():
-			add = form.save(commit=False)
-			add.status = True
-			add.save()
-			info = "Se guardo satisfactoriamente"
-			return HttpResponseRedirect('/listFarmacia')
+def comprobar_existencia():
+	if Farmacia.objects.exists():
+		return False #aun no existen registros que se muestte la opcio de agregar ebn la palntilla
 	else:
-		formulario = FarmaciaForm()
-		ctx = {'form':formulario}
-		return render_to_response('home/addFarmacia.html',ctx,context_instance=RequestContext(request))
+		return True  #aun no exiten refistros
+
+def view_add_farmacia(request):
+	if request.user.is_authenticated():
+		info = "informacion"
+		if request.method == "POST":
+			form = FarmaciaForm(request.POST,request.FILES)
+			if form.is_valid():
+				add = form.save(commit=False)
+				add.status = True
+				add.save()
+				info = "Se guardo satisfactoriamente"
+				status_lista = "active"
+				lista_farmacia = obtenerFarmacias()
+				existencia = comprobar_existencia()
+				ctx = {'existencia':existencia,"farmacia":lista_farmacia,"status_lista":status_lista}
+				return render_to_response('home/listFarmacia.html',ctx,context_instance=RequestContext(request))
+		else:
+			formulario = FarmaciaForm()
+			status_add = "active"
+			existencia = comprobar_existencia()
+			ctx = {'existencia':existencia,'form':formulario,'status_add':status_add}
+			return render_to_response('home/addFarmacia.html',ctx,context_instance=RequestContext(request))
+	else:
+		return HttpResponseRedirect('/login')
 	
 def view_list_farmacia(request):
 	farmacia = Farmacia.objects.filter(status=True)
-	ctx = {'farmacia':farmacia}
+	status_lista = "active"
+	existencia = comprobar_existencia()
+	ctx = {'existencia':existencia,'farmacia':farmacia,'status_lista':status_lista}
 	return render_to_response('home/listFarmacia.html',ctx,context_instance=RequestContext(request))
 	
 def view_edit_farmacia(request,id_farmacia):
@@ -39,7 +58,9 @@ def view_edit_farmacia(request,id_farmacia):
 						'direccion':farmacia.direccion,
 						'telefono':farmacia.telefono,
 						})
-		ctx = {'farmacia':farmacia ,'form':formulario}
+		status_lista = "active"
+		existencia = comprobar_existencia()
+		ctx = {'existencia':existencia,'farmacia':farmacia ,'form':formulario,"status_lista":status_lista}
 		return render_to_response('home/editFarmacia.html',ctx,context_instance=RequestContext(request))
 	if request.method == "POST":
 		farmacia = Farmacia.objects.get(pk=id_farmacia)
@@ -51,7 +72,11 @@ def view_edit_farmacia(request,id_farmacia):
 				add.status = True
 				add.save()
 				info = "Se guardo satisfactoriamente"
-				return HttpResponseRedirect('/listFarmacia')
+				status_lista = "active"
+				existencia = comprobar_existencia()
+				farmacias = Farmacia.objects.filter(status=True)
+				ctx = {'existencia':existencia,"farmacia":farmacias,"status_lista":status_lista}
+				return render_to_response('home/listFarmacia.html',ctx,context_instance=RequestContext(request))
 
 
 

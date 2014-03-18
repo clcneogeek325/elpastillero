@@ -16,24 +16,25 @@
 			</div>
 			
 			<div class="row">
-				<div class="span3">
-					<ul class="nav nav-list">
-						<li class="nav nav-header">Existente</li>
-						<li><a href="{% url vista_gregar_mercancia %}">Agregar Mercancia</a></li>
-					</ul>
-					<ul class="nav nav-list">
-						<li class="nav nav-header">Nuevo</li>
-						<li><a href="{% url  vista_agregar_nuevo_producto %}">Agregar</a></li>
-						<li><a href="{% url  vista_eliminar_producto %}">Eliminar</a></li>
-						<li class="active"><a href="{% url  vista_actualizar_producto %}">Actualizar</a></li>
-					</ul>
-					<ul class="nav nav-list">
-						<li class="nav nav-header">Categorias</li>
-						<li><a href="">Agregar Categoria</a></li>
-					</ul>
-				</div>
+			{% include 'productos/newProductos/barraLateralIzquierda.html' %}
 				<div class="span9">
-					<img src="/media/img/Linux-Python.png"/>		
+					<div class="well sidebar-nav">
+						<ul class="nav nav-list">
+							<li class="nav-header"></li><br>
+								<form action="." method="POST">
+								{% csrf_token %}
+								<p>Codigo Del Producto</p><br>
+								{{form.codigo}}<br>
+								<p>Nombre del producto</p><br>
+								{{form.nombre_producto}}<br>
+								<p>Nombre de la Compania</p><br>
+								{{form.nombre_compania}}<br>
+								<p>Nombre proveedor</p><br>
+								{{form.nombre_proveedor}}<br>
+									<button class="btn btn-large btn-primary">Guardar</button>
+									</form>
+								</p>
+						</ul>
 				</div>
 			</div>
 		</div>
