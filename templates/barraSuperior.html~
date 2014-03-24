@@ -5,8 +5,8 @@
 			<li><a href="{% url vista_agregar_personal %}">Personal</a></li>
 			<li><a href="{% url vista_agregar_proveedor  %}">Proveedores</a></li> 
 			<li><a href="{% url vista_tipo_producto%}">Productos</a></li>
-			<li><a href="#">Ventas</a></li>
-			<li><a href="#">Extras</a></li>
+			<li><a href="{% url  vista_agregar_ventas %}">Ventas</a></li>
+			<li><a href="{% url  vista_pdf %}">Extras</a></li>
 			<li><a href="{% url  vista_deslogearse %}">Cerrar Cesion</a></li>
 		</ul>
 	</div>

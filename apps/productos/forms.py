@@ -17,8 +17,8 @@ class GetCodigoProductoForm(forms.Form):
 	codigo = forms.CharField()
 	
 class LoginForm(forms.Form):
-	username = forms.CharField(widget=forms.TextInput())
-	passwd = forms.CharField(widget=forms.PasswordInput(render_value=False))
+	username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'Escribe el nombre de usuario'}))
+	passwd = forms.CharField(widget=forms.PasswordInput(render_value=False,attrs={'class': 'form-control','placeholder':'Escribe el tu contrasenia'}))
 	
 class productoSinCodigoForm(forms.ModelForm):
 	class Meta:

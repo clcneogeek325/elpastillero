@@ -21,14 +21,25 @@
 			
 								<div class="row">
 									<div class="span9">
-						<form action="" method="POST">
-							{% csrf_token%}
-							{{ msg }}
-							{{ form.as_p }}
-							<button class="btn btn-large btn-primary">Inciar Sesion</button>
-						
-						</form>
+										
+											<form action="" method="POST">
+											
+												{% csrf_token%}
+												{{ msg }}<br>
+												<div class="input-group ">
+													<span class="input-group-addon">USUARIO :</span><br>
+														{{ form.username }}<br>
+												</div>
+												
+												<div class="input-group">
+													<span class="input-group-addon">CONTRASENIA :</span><br>
+													{{form.passwd}}<br>
+													<button class="btn btn-large btn-primary">Inciar Sesion</button>
+												</div>
+											</form>
+										
 				</div>
 			</div>
 		</div>
+		
 {% endblock %}
