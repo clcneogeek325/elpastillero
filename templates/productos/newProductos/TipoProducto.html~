@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}
+	Dar de alta a productos nuevos
+{% endblock %}
+
+{% block content %}
+		<div class="container">
+			<div class="row">
+				<div class="hero-unit">
+					<h1>
+						Dar de alta a nuevos productos
+					</h1>
+					<small>Hola</small>
+				</div>
+			</div>
+			
+			<div class="row">
+			{% include 'productos/newProductos/barraLateralIzquierda.html' %}
+				<div class="span9">
+					<div class="well sidebar-nav">
+						<ul class="nav nav-list">
+							<li class="nav-header"></li><br>
+							<h1>
+								Elija el tipo de producto que quiere agregar
+							</h1>
+							<br>
+						<a href="{% url  vista_obtener_codigo_agregar %}"><button class="btn btn-primary btn-large">Farmacia    </button>
+						</a>
+						<a href="{%url vista_obtener_codigo_agregar_super%}"><button class="btn btn-primary btn-large">Minisuper</button>
+						</a>
+						<a href="{% url vista_agregar_p_sinCodigo	%}"><button class="btn btn-primary btn-large">Producto sin Codigo</button>
+						</a>
+						</ul>
+				</div>
+			</div>
+		</div>
+
+{% endblock %}
+

@@ -1,0 +1,4 @@
+from django.contrib import admin
+from apps.ventas.models import Tabla_temporal,Venta, Productos_vendidos
+
+admin.site.register()

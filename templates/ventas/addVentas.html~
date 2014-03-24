@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% block title %}
+	Venta de productos
+
+{% endblock %}
+
+{% block content %}
+		<div class="container">
+			<div class="row">
+				<div class="hero-unit">
+					<h1>
+						Ventas de productos
+					</h1>
+					<small>Hola</small>
+				</div>
+			</div>
+			
+			<div class="row">
+
+			{% include 'ventas/barraLateralIzquierdo.html' %}
+				
+				<div class="span8">
+					<div class="well sidebar-nav">
+						<ul class="nav nav-list">
+							<li class="nav-header"></li><br>
+								<p aling="justify">
+								<h3>
+									{{msg}}
+								
+								</h3>
+													
+									<form action="" method="POST" class="form-horizontal" role="form">
+									{% csrf_token %}
+					Codigo de barras: {{ form.codigo_producto}} Catidad: {{ form.cantidad}}---->
+									<button class="btn btn-large btn-primary">Agregar</button>
+
+									</form>
+
+									
+
+									{% if lista_tabla %}
+										<table class="table table-bordered">
+												<theader>
+													<h1>
+														Datos Productos
+													</h1>
+													<tr>
+														<td><h4>Nombre Del Producto</h4></td>
+														<td><h4>Total de piezas</h4></td>
+														<td><h4>Precio Compra</h4></td>
+														<td><h4>Precio Venta</h4></td>
+														<td><h4>Valor Total Piezas</h4></td>
+													</tr>
+													
+												</theader>
+										{% for producto in lista_tabla %}
+												<tbody>
+													<tr>
+														<td> {{producto.producto.nombre_producto}}</td>
+														<td> {{producto.numero_piezas}}</td>
+														<td> {{producto.precio_compra}}</td>
+														<td> {{producto.precio_venta}}</td>
+														<td> {{producto.valor_piezas_vendidas}}</td>
+														<td><a class="btn" href="{{ producto.id}}"><i class="icon-remove"></i>Eliminar</a></td>
+														
+													</tr>
+												</tbody>
+										{% endfor %}
+										</table>
+									{% else %}
+										<h2><p>No hay Productos agregados al carrito</p></h2>
+									{% endif %}
+								</p>
+						</ul>
+						
+					</div>
+				</div>
+				<div class="span2">
+					<div class="well sidebar-nav">
+						<ul class="nav nav-list">
+							<li class="nav-header"></li>
+								<h4>Venta total</h4>
+								<br>{{ venta_total}}
+						</ul>
+					</div>
+				</div>
+				<div class="span2">
+					<div class="well sidebar-nav">
+						<ul class="nav nav-list">
+							<li class="nav-header"></li>
+								<a href="url vista_terminar_venta"><button class="btn btn-large btn-success">Terminar Venta</button></a>
+								
+						</ul>
+					</div>
+				</div>
+				<div class="span2">
+					<div class="well sidebar-nav">
+						<ul class="nav nav-list">
+							<li class="nav-header"></li>
+								<button class="btn btn-large btn-danger">Cancelar Venta</button>
+						</ul>
+					</div>
+				</div>
+			</div>
+							
+		</div>
+
+{% endblock %}
+

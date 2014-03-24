@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}
+	Dar de alta a productos nuevos sin codigo de barras
+{% endblock %}
+
+{% block content %}
+		<div class="container">
+			<div class="row">
+				<div class="hero-unit">
+					<h1>
+						Dar de alta a nuevos productos sin codigo de barras
+					</h1>
+					<small>Hola</small>
+				</div>
+			</div>
+			
+			<div class="row">
+			{% include 'productos/newProductos/barraLateralIzquierda.html' %}
+				<div class="span9">
+					<div class="well sidebar-nav">
+						<ul class="nav nav-list">
+							<li class="nav-header"></li><br>
+							
+									<h4>{{ msg }}</h4><br><br>
+							<form action="" method="POST">
+									{% csrf_token %}
+									{{ form.as_p }}
+								   						<a href=""><button class="btn btn-primary btn-large">Siguiente</button></a>
+							</form>
+								</p>
+						</ul>
+				</div>
+			</div>
+		</div>
+
+{% endblock %}
+

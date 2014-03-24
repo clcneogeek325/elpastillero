@@ -23,8 +23,17 @@
 							
 									<h4>{{ msg }}</h4><br><br>
 							<form action="" method="POST">
+							{% if existen %}
 									{% csrf_token %}
-									<p>Codigo de barras :</p>
+									{{ form_producto.as_p }}
+									{{ form_mercancia.as_p}}
+								{% else %}
+									{% csrf_token %}
+									{{ form_mercancia.as_p }}
+							{% endif %}
+
+						{% comment %}
+																<p>Codigo de barras :</p>
 									{{ form_producto.codigo }}
 									<p>Nombre del producto</p>
 									{{ form_producto.nombre_producto}}
@@ -57,9 +66,10 @@
 									<p>Ganancia</p>
 									{{form_mercancia.ganancia }}
 									<p>Iva</p>
-									{{form_mercancia.iva}}
+									{{form_mercancia.iva}}<br>
 									
-								   						<a href=""><button class="btn btn-primary btn-large">Agregar</button></a>
+						{% endcomment %}
+								   						<a href=""><button class="btn btn-primary btn-large">Dar de Alta</button></a>
 							</form>
 								</p>
 						</ul>

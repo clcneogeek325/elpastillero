@@ -24,7 +24,7 @@
 							<li class="nav-header"></li><br>
 								<form action="." method="POST">
 									{% csrf_token%}
-									{{ form }}
+									{{ form.as_p }}
 									<br>
 									<button class="btn btn-primary btn-large">Dar de Baja Este producto</button>
 									

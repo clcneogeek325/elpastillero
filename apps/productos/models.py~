@@ -42,3 +42,8 @@ class ventas(models.Model):
 	valor_total = models.FloatField(max_length=10)
 	venta_total = models.FloatField(max_length=10)
 	
+class productoSinCodigo(models.Model):
+	nombre_producto =models.CharField(max_length=200)
+	status = models.BooleanField(default=True)
+	def __unicode__(self):
+		return self.nombre_producto

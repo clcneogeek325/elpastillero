@@ -24,5 +24,5 @@ class Mercancia(models.Model):
 	ganancia = models.FloatField()
 	precio_venta = models.FloatField()
 	iva = models.IntegerField()
-	
+	factura = models.CharField(max_length=200,blank=True)
 	

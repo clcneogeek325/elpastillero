@@ -23,14 +23,7 @@
 							<li class="nav-header"></li><br>
 								<form action="." method="POST">
 								{% csrf_token %}
-								<p>Codigo Del Producto</p><br>
-								{{form.codigo}}<br>
-								<p>Nombre del producto</p><br>
-								{{form.nombre_producto}}<br>
-								<p>Nombre de la Compania</p><br>
-								{{form.nombre_compania}}<br>
-								<p>Nombre proveedor</p><br>
-								{{form.nombre_proveedor}}<br>
+								{{ form.as_p}}
 									<button class="btn btn-large btn-primary">Guardar</button>
 									</form>
 								</p>

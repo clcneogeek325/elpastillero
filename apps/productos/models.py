@@ -25,20 +25,10 @@ class Mejor_proveedor(models.Model):
 	def __unicode__(self):
 		return self.producto.nombre_producto
 		
-class tabla_temporal(models.Model):
-	producto = models.ForeignKey(Producto)
-	personal = models.ForeignKey(Personal)
-	fecha_venta = models.DateTimeField(datetime.datetime.now)
-	numero_piezas = models.IntegerField(max_length=5)
-	precio_venta = models.FloatField(max_length=10)
-	valor_total = models.FloatField(max_length=10)
+
 	
-class ventas(models.Model):
-	producto = models.ForeignKey(Producto)
-	personal = models.ForeignKey(Personal)
-	fecha_venta = models.DateTimeField()
-	numero_piezas = models.IntegerField(max_length=5)
-	precio_venta = models.FloatField(max_length=10)
-	valor_total = models.FloatField(max_length=10)
-	venta_total = models.FloatField(max_length=10)
-	
+class productoSinCodigo(models.Model):
+	nombre_producto =models.CharField(max_length=200)
+	status = models.BooleanField(default=True)
+	def __unicode__(self):
+		return self.nombre_producto
