@@ -3,7 +3,7 @@ from django.template import RequestContext
 from apps.ventas.forms import ventasForm,finalizarVentaForm
 from apps.ventas.models import Tabla_temporal,Venta,Productos_vendidos
 from apps.productos.models import Producto
-
+from datetime import datetime
 
 
 def view_add_ventas(request):

@@ -17,7 +17,7 @@
 			
 			<div class="row">
 
-			{% include 'home/barraLateralIzquierdo.html' %}
+			{% include 'reportes/barraLateralIzquierdo.html' %}
 				
 				<div class="span5">
 					<div class="well sidebar-nav">

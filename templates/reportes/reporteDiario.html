@@ -16,7 +16,7 @@
 			
 			<div class="row">
 			{% include 'reportes/barraLateralIzquierdo.html' %}
-				<div class="span5">
+				<div class="span9">
 					<div class="well sidebar-nav">
 						<ul class="nav nav-list">
 							<li class="nav-header"></li><br>
@@ -25,24 +25,31 @@
 										<table class="table table-bordered">
 												<theader>
 													<h1>
-														{{msg}}
+														{{msg}}<br>
+														{{total_utilidad}}
 													</h1>
 													<tr>
 														<td><h4>Nombre del producto</h4></td>
 														<td><h4>Nombre del personal</h4></td>
+														<td><h4>Fecha venta</h4></td>
 														<td><h4>Precio Compra</h4></td>
 														<td><h4>Precion Venta</h4></td>
 														<td><h4>Piezas Vendidas</h4></td>
+														<td><h4>Valor Total Piezas Vendidas</h4></td>
 													</tr>
 													
 												</theader>
 										{% for p in productos %}
 												<tbody>
 													<tr>
-														<td> {{p}}</td>
-														<td> {{p}}</td>
-														<td> {{p}}</td>
-														<td><a class="btn" href="/editFarmacia/{{p.id}}/"><i class="icon-pencil"></i>Editar</a></td>
+														<td> {{p.producto.nombre_producto}}</td>
+														<td> {{p.venta.personal}}</td>
+														<td> {{p.fecha_venta}}</td>
+														<td> {{p.precio_compra}}</td>
+														<td> {{p.precio_venta}}</td>
+														<td> {{p.piezas_vendias}}</td>
+														<td> {{p.valor_piezas_vendidas}}</td>
+														
 													</tr>
 												</tbody>
 										{% endfor %}

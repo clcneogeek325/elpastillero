@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #-*- coding:utf-8 -*-
-
+from django.db import connection
 import ho.pisa as pisa
 import cStringIO as StringIO
 import cgi
@@ -9,7 +9,25 @@ from django.template.loader import render_to_string
 from django.http import HttpResponse
 from reportlab.pdfgen import canvas
 from django.shortcuts import render_to_response
+from apps.ventas.models import Venta
+from django.db.models import Sum
+from apps.ventas.models import Productos_vendidos
 
+
+
+
+def getDate(tabla,tipo):
+	cursor = connection.cursor()
+	if tipo == "hoy":
+		cursor.execute("SELECT CURDATE()" ); #FECHA DE HOY
+	elif tipo == "ayer":
+		cursor.execute("SELECT SUBDATE(CURDATE(), INTERVAL 1 DAY)");#FECHA AYER
+	elif tipo == "ac1sem":
+		cursor.execute("SELECT SUBDATE(CURDATE(), INTERVAL 7 DAY)");#FECHA HACE 1 SEMANA
+	elif tipo == "ac1mes":
+		cursor.execute("SELECT SUBDATE(CURDATE(), INTERVAL 30 DAY)");#FECHA HACE UN MES
+	fecha = [row[0] for row in cursor.fetchall()]
+	return fecha
 
 def generar_pdf(html):
     # Función para generar el archivo PDF y devolverlo mediante HttpResponse
@@ -27,5 +45,53 @@ def view_ejemplo_pdf(request):
     return generar_pdf(html)
     
 def view_mejorProv(request):
-	return render_to_response('reportes/mejorProveedor.html',
+
+	ctx = {'status_mejor_prov':"active"}
+	return render_to_response('reportes/mejorProveedor.html',ctx,
+			context_instance=RequestContext(request))
+			
+def view_report_today(request):
+	conusulta = 'fecha_venta >= CURDATE()'
+	list_p = Productos_vendidos.objects.extra(where=[conusulta])
+	list_v = Venta.objects.extra(where=[conusulta])
+	u = list_v.aggregate(u=Sum('utilidad'))
+	titulo = "ESte es el reporte del dia de hoy"
+	msg = "Esta es la utilidad generada por todas la ventas"
+	l =u.values()
+	t_u = l[0] 
+	ctx = {'msg':msg,'titulo':titulo,
+		   'status_reporte_diario':'active',
+		   'productos':list_p,
+		   'total_utilidad':t_u}
+	return render_to_response('reportes/reporteDiario.html',ctx,
+			context_instance=RequestContext(request))
+			
+def view_report_week(request):
+	consulta = 'fecha_venta BETWEEN SUBDATE(CURDATE(), INTERVAL 8 DAY) AND CURDATE()'
+	list_p = Productos_vendidos.objects.extra(where=[consulta]) 
+	list_v = Venta.objects.extra(where=[consulta])
+	u = list_v.aggregate(u=Sum('utilidad'))
+	titulo = "ESte es el reporte desde hace una semana hasta el dia de hoy"
+	msg = "Estos son las utilidades generadas por las ventas"
+	l =u.values()
+	t_u = l[0] 
+	ctx = {'msg':msg,'titulo':titulo,
+	'status_reporte_semanal':'active',
+	'total_utilidad':t_u}
+	return render_to_response('reportes/reporteSemanal.html',ctx,
+			context_instance=RequestContext(request))
+			
+def view_report_month(request):
+	consulta = 'fecha_venta BETWEEN SUBDATE(CURDATE(), INTERVAL 8 DAY) AND CURDATE()'
+	list_p = Productos_vendidos.objects.extra(where=[consulta]) 
+	list_v = Venta.objects.extra(where=[consulta])
+	u = list_v.aggregate(u=Sum('utilidad'))
+	titulo = "ESte es el reporte desde hace un mes  hasta hoy "
+	msg = "Estos son las utilidades genradas dpor las ventas"
+	l =u.values()
+	t_u = l[0] 
+	ctx = {'msg':msg,'titulo':titulo,
+	'status_reporte_mensual':'active',
+	'total_utilidad':t_u}
+	return render_to_response('reportes/reporteMensual.html',ctx,
 			context_instance=RequestContext(request))
