@@ -14,13 +14,8 @@
 	
 	</head>
 	<body>
-	
-			{% if user.is_authenticated %}
-				{% include 'barraSuperior.html' %}
-			{% else %}
-				
-				<a href="{% url  vista_logearse %}"></a>
-			{% endif %}
+		{% include 'barraSuperior.html' %}
+		
 		{% block content %}
 			
 		{% endblock %}

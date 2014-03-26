@@ -14,21 +14,6 @@ from django.db.models import Sum
 from apps.ventas.models import Productos_vendidos
 
 
-
-
-def getDate(tabla,tipo):
-	cursor = connection.cursor()
-	if tipo == "hoy":
-		cursor.execute("SELECT CURDATE()" ); #FECHA DE HOY
-	elif tipo == "ayer":
-		cursor.execute("SELECT SUBDATE(CURDATE(), INTERVAL 1 DAY)");#FECHA AYER
-	elif tipo == "ac1sem":
-		cursor.execute("SELECT SUBDATE(CURDATE(), INTERVAL 7 DAY)");#FECHA HACE 1 SEMANA
-	elif tipo == "ac1mes":
-		cursor.execute("SELECT SUBDATE(CURDATE(), INTERVAL 30 DAY)");#FECHA HACE UN MES
-	fecha = [row[0] for row in cursor.fetchall()]
-	return fecha
-
 def generar_pdf(html):
     # Función para generar el archivo PDF y devolverlo mediante HttpResponse
     result = StringIO.StringIO()
@@ -77,6 +62,7 @@ def view_report_week(request):
 	t_u = l[0] 
 	ctx = {'msg':msg,'titulo':titulo,
 	'status_reporte_semanal':'active',
+	'productos':list_p,
 	'total_utilidad':t_u}
 	return render_to_response('reportes/reporteSemanal.html',ctx,
 			context_instance=RequestContext(request))
@@ -92,6 +78,7 @@ def view_report_month(request):
 	t_u = l[0] 
 	ctx = {'msg':msg,'titulo':titulo,
 	'status_reporte_mensual':'active',
+	'productos':list_p,
 	'total_utilidad':t_u}
 	return render_to_response('reportes/reporteMensual.html',ctx,
 			context_instance=RequestContext(request))

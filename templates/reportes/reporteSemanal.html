@@ -38,11 +38,15 @@
 												</theader>
 										{% for p in productos %}
 												<tbody>
-													<tr>
-														<td> {{p}}</td>
-														<td> {{p}}</td>
-														<td> {{p}}</td>
-														<td><a class="btn" href="/editFarmacia/{{p.id}}/"><i class="icon-pencil"></i>Editar</a></td>
+													</tr>
+														<td> {{p.producto.nombre_producto}}</td>
+														<td> {{p.venta.personal}}</td>
+														<td> {{p.fecha_venta}}</td>
+														<td> {{p.precio_compra}}</td>
+														<td> {{p.precio_venta}}</td>
+														<td> {{p.piezas_vendias}}</td>
+														<td> {{p.valor_piezas_vendidas}}</td>
+														
 													</tr>
 												</tbody>
 										{% endfor %}
