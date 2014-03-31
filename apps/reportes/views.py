@@ -6,7 +6,7 @@ import cStringIO as StringIO
 import cgi
 from django.template import RequestContext
 from django.template.loader import render_to_string
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect,HttpResponse
 from reportlab.pdfgen import canvas
 from django.shortcuts import render_to_response
 from apps.ventas.models import Venta
@@ -19,6 +19,8 @@ from apps.reportes.forms import getFechaForm,getRangoFechaForm
 from apps.productos.models import Producto
 from datetime import datetime
 from apps.mercancia.models import Mercancia
+from django.shortcuts import render_to_response
+
 
 
 def view_prodcts_agotados(request):

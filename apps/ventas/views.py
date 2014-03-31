@@ -41,7 +41,7 @@ def view_delt_producto(request,id_producto):
 		print "Fue un POST"
 		prod = Tabla_temporal.objects.get(pk=id_producto)
 		prod.delete()
-		return HttpResponseRedirect('/addVentas')
+		return HttpResponseRedirect('/addVentas/0/')
 	else:
 		print "Fue un GET"
 		msg = "De Verdad desea eliminar este proucto de la venta actual"

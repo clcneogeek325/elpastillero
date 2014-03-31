@@ -41,7 +41,7 @@ def view_delt_producto(request,id_producto):
 		print "Fue un POST"
 		prod = Tabla_temporal.objects.get(pk=id_producto)
 		prod.delete()
-		return HttpResponseRedirect('/addVentas')
+		return HttpResponseRedirect('/addVentas/0/')
 	else:
 		print "Fue un GET"
 		msg = "De Verdad desea eliminar este proucto de la venta actual"
@@ -176,13 +176,7 @@ def view_vender(request):
 			
 			limpiar_tabla_temporal = Tabla_temporal.objects.filter(personal_id=id_personal)
 			limpiar_tabla_temporal.delete()
-			cuenta_total = "00.0"
-			msg = "La venta se llevo a cabo correctamante"
-			ctx = {'lista_tabla':lista_tabla,
-					'form':form,
-					'msg':msg,
-					'venta_total':cuenta_total}
-			return render_addVentas(request,ctx)
+			return HttpResponseRedirect('/addVentas/0/')
 		else:
 			print "Fue un GET"
 			msg = "Esta seguro(a) de querer finalizar la venta"
@@ -201,7 +195,7 @@ def view_cancel_venta(request):
 			form = ventasForm()
 			lista_productos = Tabla_temporal.objects.filter(personal_id=request.user.id)
 			lista_productos.delete()
-			HttpResponseRedirect('/addVentas/0/')
+			return HttpResponseRedirect('/addVentas/0/')
 		else:
 			print "Fue un GET"
 			msg = "Esta seguro(a) de quierer cancelar la venta"

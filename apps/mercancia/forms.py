@@ -8,7 +8,7 @@ class MercanciaForm(forms.ModelForm):
 					'personal',
 					'categoria',}
 		widgets = {
-            'fecha_caducidad': forms.TextInput(attrs={'class':'vDateField'}),
+            'fecha_caducidad': forms.TextInput(attrs={'class':''}),
         }
 
 class MercanciaSuperForm(forms.ModelForm):
@@ -24,5 +24,5 @@ class MercanciaSuperForm(forms.ModelForm):
 					'ganancia',
 					}
 		widgets = {
-            'fecha_caducidad': forms.TextInput(attrs={'class':'vDateField'}),
+            'fecha_caducidad': forms.TextInput(attrs={'class':''}),
         }

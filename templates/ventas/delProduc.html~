@@ -29,7 +29,6 @@
 								<h1>
 									{{ msg}}
 								</h1>
-								<p>{{ total_venta }}</p>
 									<form action="" method="POST">
 										{% csrf_token %}
 										<button class="btn btn-large btn-success">SI</button>

@@ -7,7 +7,7 @@ class getMejorProveedor(forms.Form):
 	codigo = forms.CharField(label="Codigo del Producto")
 	
 class getFechaForm(forms.Form):
-	fecha = forms.DateField(widget=DateInput(attrs = {'class': 'vDateField', 'size': '10'}))
+	fecha = forms.DateField(widget=DateInput(attrs = {'data-format': 'yyyy-MM-dd'}))
 	
 class getRangoFechaForm(forms.Form):
 	fechauno = forms.DateField(label="Fecha 1",widget=DateInput(attrs = {'class': 'vDateField', 'size': '50','name':'fechauno'}))
