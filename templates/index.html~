@@ -5,7 +5,7 @@
 
 
 {% block content %}
-		{% include "barraSuperiorLogout.html" %}
+		{% include "barraSuperior.html" %}
 		<div class="container">
 			<div class="row">
 				<div class="hero-unit">
@@ -18,7 +18,7 @@
 			
 			<div class="row">
 				<div class="span9">
-					<img src="/media/img/Linux-Python.png"/>		
+					<img src="/media/img/logo.jpg"/>		
 				</div>
 			</div>
 		</div>

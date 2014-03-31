@@ -27,10 +27,11 @@
 												<h1>
 													Lista De Proveedores
 												</h1>
-												<tr>
+												<tr class="success">
 													<td><h4>Nombre</h4</td>
 													<td><h4>Apelldo Paterno</h4></td>
 													<td><h4>Apellido Materno<h4></td>
+													<td></td>
 											</theader>
 										{% for proveedor in lista_proveedores%}
 											<tbody>

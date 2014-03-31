@@ -28,18 +28,20 @@
 												<h1>
 													Lista De Empleados
 												</h1>
-												<tr>
+												<tr class="success">
 													<td><h4>Nombre</h4></td>
 													<td><h4>Apelldo Paterno</h4></td>
 													<td><h4>Apellido Materno<h4></td>
 													<td><h4>Telefono<h4></td>
 													<td><h4>Email<h4></td>
+													<td></td>
+													<td></td>
 												</tr>
 													
 											</theader>
 										{% for empleado in lista_personal%}
 											<tbody>
-												<tr>
+												<tr  class="info">
 													<td>{{ empleado.nombre}}</td>
 													<td>{{ empleado.apellido_Paterno}}</td>
 													<td>{{ empleado.apellido_Materno}}</td>

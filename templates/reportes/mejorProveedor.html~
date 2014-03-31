@@ -26,7 +26,12 @@
 						<h1>
 							Obtener el mejor proveedor
 						</h1>
+							<form method="POST">
+								{% csrf_token %}
+								{{ form }}
+								<button class="btn btn-primary btn-large">Siguiente</button>
 								
+							</form>
 						</ul>
 						
 					</div>

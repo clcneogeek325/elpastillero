@@ -7,7 +7,10 @@ class MercanciaForm(forms.ModelForm):
 		exclude = {'producto',
 					'personal',
 					'categoria',}
-					
+		widgets = {
+            'fecha_caducidad': forms.TextInput(attrs={'class':'vDateField'}),
+        }
+
 class MercanciaSuperForm(forms.ModelForm):
 	class Meta:
 		model = Mercancia
@@ -20,4 +23,6 @@ class MercanciaSuperForm(forms.ModelForm):
 					'descuento_venta',
 					'ganancia',
 					}
-					
+		widgets = {
+            'fecha_caducidad': forms.TextInput(attrs={'class':'vDateField'}),
+        }

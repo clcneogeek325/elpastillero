@@ -15,7 +15,7 @@
 			</div>
 			
 			<div class="row">
-			{% include 'productos/newProductos/barraLateralIzquierda.html' %}
+			{% include 'proveedores/barraLateralIzquierda.html' %}
 				<div class="span9">
 					<div class="well sidebar-nav">
 						<ul class="nav nav-list">

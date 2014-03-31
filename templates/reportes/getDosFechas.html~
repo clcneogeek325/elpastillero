@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block title %}
+	Obtener reporte de una semana o un mes completo
+{% endblock %}
+
+{% block content %}
+		<div class="container">
+			<div class="row">
+				<div class="hero-unit">
+					<h1>
+						Obtener reporte de una semana o un mes completo
+					</h1>
+					<small>Hola</small>
+				</div>
+			</div>
+			
+			<div class="row">
+
+			{% include 'reportes/barraLateralIzquierdo.html' %}
+				
+				<div class="span9">
+					<div class="well sidebar-nav">
+						<ul class="nav nav-list">
+							<li class="nav-header"></li>
+						<h4>
+							{{msg}}
+							{{total_utilidad}}
+						</h4>
+						<br>
+							<form method="POST">
+								{% csrf_token %}
+								<div class="form-row field-fecha-uno">
+									<div >
+										<p class="datetime">{{ form.fechauno }}</p>
+									</div>
+								</div>		
+								<div class="form-row field-fecha-dos">
+									<div >
+										<p class="datetime">{{ form.fechados }}</p>
+									</div>
+								</div>		
+								
+								<button class="btn btn-primary btn-large">Siguiente</button>
+								
+							</form>
+							{% if productos %}
+										<table class="table table-bordered">
+												<theader>
+													<h1>
+														<br>
+														
+													</h1>
+													<tr>
+														<td><h4>Nombre del producto</h4></td>
+														<td><h4>Nombre del personal</h4></td>
+														<td><h4>Fecha venta</h4></td>
+														<td><h4>Precio Compra</h4></td>
+														<td><h4>Precion Venta</h4></td>
+														<td><h4>Piezas Vendidas</h4></td>
+														<td><h4>Valor Total Piezas Vendidas</h4></td>
+													</tr>
+													
+												</theader>
+										{% for p in productos %}
+												<tbody>
+													<tr>
+														<td> {{p.producto.nombre_producto}}</td>
+														<td> {{p.venta.personal}}</td>
+														<td> {{p.fecha_venta}}</td>
+														<td> {{p.precio_compra}}</td>
+														<td> {{p.precio_venta}}</td>
+														<td> {{p.piezas_vendias}}</td>
+														<td> {{p.valor_piezas_vendidas}}</td>
+														
+													</tr>
+												</tbody>
+										{% endfor %}
+										</table>
+									{% else %}
+										<p>No se han encontrado  productos</p>
+									{% endif %}
+						</ul>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+
+{% endblock %}
+

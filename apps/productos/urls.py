@@ -16,6 +16,7 @@ urlpatterns = patterns('apps.productos.views',
     url(r'^login/$', 'view_login', name='vista_logearse'),
     url(r'^logout/$', 'view_logout', name='vista_deslogearse'),
     url(r'^tipo/$', 'view_tipo', name='vista_tipo_producto'),
-    url(r'^productoSinCodigoAdd/$', 'view_p_sinCodigo_Add', name='vista_agregar_p_sinCodigo'),
-    
+    url(r'^productoSinCodigoGet/$', 'view_p_sinCodigo_get', name='vista_obtener_Codigo_producto_sin_codigo'),
+    url(r'^addProductoSinCodigo/(?P<id_producto>.*)/$', 'view_add_produc_sin_cod', name='vista_agregar_nuevo_producto_sin_codigo'),
+   
 )

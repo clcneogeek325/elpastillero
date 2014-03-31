@@ -8,6 +8,11 @@ Trabajando ya con django
 Acciones Para los modelos
 
 
+class="vDateField" # ene l input
+
+class="datetime" #en un <p>
+================
+
 import time
 import datetime
 

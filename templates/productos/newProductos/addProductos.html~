@@ -23,15 +23,9 @@
 							
 									<h4>{{ msg }}</h4><br><br>
 							<form action="" method="POST">
-							{% if existen %}
 									{% csrf_token %}
 									{{ form_producto.as_p }}
 									{{ form_mercancia.as_p}}
-								{% else %}
-									{% csrf_token %}
-									{{ form_mercancia.as_p }}
-							{% endif %}
-
 						{% comment %}
 																<p>Codigo de barras :</p>
 									{{ form_producto.codigo }}
@@ -47,8 +41,20 @@
 									{{ form_mercancia.proveedor }}
 									<p>Nombre de la Compania</p>
 									{{ form_mercancia.compania}}
-									<p>Fecha de caducidad</p>
+									<div >
+									<label>Fecha de caducidad2</label>
 									{{ form_mercancia.fecha_caducidad }}
+									<span class="datetimeshortcuts">
+											<a href="javascript:DateTimeShortcuts.handleCalendarQuickLink(0, 0);">
+												Hoy
+											</a>
+											 | 
+											<a id="calendarlink0" href="javascript:DateTimeShortcuts.openCalendar(0);">
+												<img src="/static/admin/img/icon_calendar.gif" alt="Calendario"></img>
+											</a>
+										</span>
+									</div>
+
 									<p> Fecha de ingreso</p>
 									{{form_mercancia.fecha_ingreso }}
 									<p>Precio Sugerido </p>

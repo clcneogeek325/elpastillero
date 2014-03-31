@@ -5,13 +5,20 @@ from apps.categoria.models import Categoria
 class ProductoForm(forms.ModelForm):
 	class Meta:
 		model = Producto
-		exclude = {'status','precio_compra','precio_venta','total_piezas',}
+		exclude = {'status','precio_compra','precio_venta','total_piezas','tiene_codigo',}
 
 
 class ProductoFormCompleto(forms.ModelForm):
 	class Meta:
 		model = Producto
-		exclude = {'status',}
+		exclude = {'status','tiene_codigo',}
+
+
+class ProductoCompletoSinCodForm(forms.ModelForm):
+	total_piezas = forms.IntegerField(label="Numero de piezas")
+	class Meta:
+		model = Producto
+		exclude = {'status','tiene_codigo',}
 
 class GetCodigoProductoForm(forms.Form):
 	codigo = forms.CharField()
@@ -23,5 +30,5 @@ class LoginForm(forms.Form):
 class productoSinCodigoForm(forms.ModelForm):
 	class Meta:
 		model = productoSinCodigo
-		exclude = {'status',}
+		exclude = {'status','tiene_codigo',}
 		

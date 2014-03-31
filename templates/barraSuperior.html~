@@ -1,12 +1,12 @@
-<div class="navbar navbar-inverse navbar-fixed-top">
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 	<div class="navbar-inner">
-			<a class="brand" href="{% url vista_lista_farmacia %}">El pastillero</a>
+			<a class="brand active" href="{% url vista_lista_farmacia %}">El pastillero</a>
 		<ul class="nav">
-			<li><a href="{% url vista_agregar_personal %}">Personal</a></li>
+			<li class="active"><a href="{% url vista_agregar_personal %}">Personal</a></li>
 			<li><a href="{% url vista_agregar_proveedor  %}">Proveedores</a></li> 
 			<li><a href="{% url vista_tipo_producto%}">Productos</a></li>
-			<li><a href="{% url  vista_agregar_ventas %}">Ventas</a></li>
-			<li><a href="#" >Extras</a></li>
+			<li><a href="/addVentas/0/">Ventas</a></li>
+			<li><a href="{% url vista_mejor_proveedor%}" >Extras</a></li>
 			<li><a href="{% url  vista_deslogearse %}">Cerrar Cesion</a></li>
 		</ul>
 	</div>

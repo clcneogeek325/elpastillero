@@ -31,14 +31,16 @@
 												<h1>
 													Lista De Companias
 												</h1>
-												<tr>
+												<tr class="success">
 													<td><h4>Nombre</h4</td>
+													<td></td>
+													<td></td>
 												</tr>
 													
 											</theader>
 										{% for compania in lista_companias%}
 											<tbody>
-												<tr>
+												<tr class="info">
 													<td>{{ compania.nombre_compania}}</td>
 													<td><a class="btn" href="/editCompania/{{compania.id}}/"><i class="icon-pencil"></i>Editar</a></td>
 													<td><a class="btn" href="/rmCompania/{{compania.id}}/"><i class="icon-remove"></i>Eliminar</a></td>

@@ -15,16 +15,7 @@
 			</div>
 			
 			<div class="row">
-				<div class="span3">
-					<ul class="nav nav-list">
-						<li class="nav nav-header">Acciones</li>
-						
-						<li><a href="{% url vista_agregar_personal %}">Agregar</a></li>
-						<li  class="active"><a href="{% url vista_lista_personal_eliminar %}">Eliminar</a></li>
-						<li><a href="{% url  vista_lista_personal_actualizar %}">Actualizar</a></li>
-					</ul>
-					
-				</div>
+		   {% include 'personal/BarraLateralIzquierda.html' %}
 				
 				<div class="span9">
 					<div class="well sidebar-nav">
@@ -37,10 +28,11 @@
 												<h1>
 													Lista De Empleados
 												</h1>
-												<tr>
+												<tr class="success">
 													<td><h4>Nombre</h4</td>
 													<td><h4>Apelldo Paterno</h4</td>
 													<td><h4>Apellido Materno<h4</td>
+													<td></td>
 												</tr>
 													
 											</theader>

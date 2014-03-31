@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block title %}
+	Obtener el mejor proveedor
+
+{% endblock %}
+
+{% block content %}
+		<div class="container">
+			<div class="row">
+				<div class="hero-unit">
+					<h1>
+						Saber quien es el mejor proveedor
+					</h1>
+					<small>Hola</small>
+				</div>
+			</div>
+			
+			<div class="row">
+
+			{% include 'reportes/barraLateralIzquierdo.html' %}
+				
+				<div class="span9">
+					<div class="well sidebar-nav">
+						<ul class="nav nav-list">
+							<li class="nav-header"></li>
+
+							<a href="">
+								<button class="btn btn-primary btn-large">
+									Consultar otro producto
+								</button>
+							</a>
+								<h4>
+									{{msg}}
+								</h4>
+
+					{% if lista_proveedores%}
+										<table class="table table-hover">
+											<theader>
+												<tr>
+													<td><h4>Nombre Proveedor</h4</td>
+													<td><h4>Nombre Producto</h4</td>
+													<td><h4>Precio del Producto<h4</td>
+												</tr>
+													
+											</theader>
+											<tbody>
+												<tr class="error">
+													<td>{{ mp.proveedor}}</td>
+													<td>{{ mp.producto}}</td>
+													<td>{{ mp.precio}}</td>
+												</tr>
+										
+											</tbody>
+										</table>
+										
+										<br><br>
+										<table class="table table-hover">
+											<theader>
+												<h4>
+													Lista De Proveedores
+												</h4>
+												<tr>
+													<td><h4>Nombre Proveedor</h4</td>
+													<td><h4>Nombre Producto</h4</td>
+													<td><h4>Precio del Producto<h4</td>
+												</tr>
+													
+											</theader>
+										{% for prov in lista_proveedores%}
+											<tbody>
+												<tr class="success">
+													<td>{{ prov.proveedor}}</td>
+													<td>{{ prov}}</td>
+													<td>{{ prov.precio}}</td>
+												</tr>
+										
+											</tbody>
+										{% endfor %}
+										</table>
+									{% else%}
+										<p>No se han encontrado ningun proveedor</p>
+									{% endif%}
+						</ul>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+
+{% endblock %}
+

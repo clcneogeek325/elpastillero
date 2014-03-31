@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}
+	{{titulo}}
+{% endblock %}
+
+
+{% block content %}
+		<div class="container">
+			<div class="row">
+				<div class="hero-unit">
+					<h1>
+						{{titulo}}
+					</h1>
+					<small>Hola</small>
+				</div>
+			</div>
+			
+			<div class="row">
+				{% include 'productos/newProductos/barraLateralIzquierda.html' %}
+				<div class="span9">
+					<h1 >Ingresa El Codigo de producto y presion siguinete</h1>
+					
+					
+					<div class="well sidebar-nav">
+						<ul class="nav nav-list">
+							<li class="nav-header"></li><br>
+								<form action="." method="POST">
+								{% csrf_token%}
+								{{form}}
+							<button class="btn btn-large btn-primary">Siguinete</button>
+								</form>
+							{% if lista_productos%}
+										<table class="table table-hover">
+											<theader>
+												<h1>
+													Lista De Productos
+												</h1>
+												<tr class="success">
+													<td><h4>Nombre Producto</h4</td>
+													<td><h4>Categoria</h4></td>
+													<td><h4>Precio Compra<h4></td>
+													<td><h4>Precio Venta<h4></td>
+													<td><h4>Total de piezas<h4></td>
+													<td><h4>Numero minimo de piezas<h4></td>
+													<td></td>
+											</theader>
+										{% for p in lista_productos%}
+											<tbody>
+												<tr class="info">
+													<td>{{ p.nombre_producto}}</td>
+													<td>{{ p.categoria.nombre_categoria}}</td>
+													<td>{{ p.precio_compra}}</td>
+													<td>{{ p.precio_venta}}</td>
+													<td>{{ p.total_piezas }}</td>
+													<td>{{ p.numero_minimo_piezas}}</td>
+													<td><a class="btn" href="/editProducto/{{p.codigo}}/"><i class="icon-pencil"></i>Editar</a></td>
+												</tr>
+										
+											</tbody>
+										{% endfor %}
+										</table>
+									{% else%}
+										<p>No se han agregado nungu producto</p>
+									{% endif%}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+{% endblock %}
+

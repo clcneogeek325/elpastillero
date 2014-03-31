@@ -2,14 +2,22 @@
 	<ul class="nav nav-list">
 		<li class="nav nav-header">Mejor Proveedor</li>
 		<li class="{{ status_mejor_prov }}"><a href="{% url vista_mejor_proveedor%}">Obtener el mejor proveedor</a></li>
-		<li class="{{ status_reporte_diario}}"><a href="{% url vista_reporte_diario%}">Reporte Dia de Hoy</a></li>
-		<li class="{{ status_reporte_semanal}}"><a href="{% url  vista_reporte_semanal %}">Reporte de la semana hasta hoy</a></li>
-		<li class="{{status_reporte_mensual}}"><a href="{% url  vista_reporte_mensual %}">Hace un mes hasta hoy</a></li>
+
 	</ul>
 		<ul class="nav nav-list">
-		<li class="nav nav-header">Elegir una fecha</li>
-		<li class=""><a href="">Elegir una fecha</a></li>
-		<li class=""><a href="">Elegir un dia,mes o semana completa</a></li>
+		<li class="nav nav-header">Reportes</li>
+		<li class=""><a href="{% url  vista_reporte_un_dia %}">Elegir una fecha</a></li>
+		<li class=""><a href="{% url  vista_rango_dos_fechas %}">Elegir un dia,mes o semana completa</a></li>
+				<li class="{{ status_reporte_diario}}"><a href="{% url vista_reporte_diario%}">Reporte Dia de Hoy</a></li>
+		<li class="{{ status_reporte_semanal}}"><a href="{% url  vista_reporte_semanal %}">Reporte de la semana hasta hoy</a></li>
+		<li class="{{status_reporte_mensual}}"><a href="{% url  vista_reporte_mensual %}">Hace un mes hasta hoy</a></li>
+
+	</ul>
+		</ul>
+		<ul class="nav nav-list">
+		<li class="nav nav-header">Productos caducados y agotados</li>
+		<li class=""><a href="{% url  vista_productos_caducados %}">Productos caducados</a></li>
+		<li class=""><a href="{% url  vista_productos_agotados %}">Productos agotados o por agotarse</a></li>
 
 	</ul>
 </div>

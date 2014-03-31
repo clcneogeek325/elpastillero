@@ -21,7 +21,7 @@
 						<ul class="nav nav-list">
 							<li class="nav-header"></li><br>
 								<p aling="justify">
-								<a href="/pdf" target="_blank"><button class="btn btn-success">Descargar PDF</button>
+								<a href="/pdf" target="_blank"><button class="btn btn-success btn-large">Descargar PDF</button>
 								</a>
 								
 									{% if productos %}

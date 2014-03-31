@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}
+
+ 	{{ titulo}}
+
+{% endblock %}
+
+{% block content %}
+
+		<div class="container">
+			<div class="row">
+				<div class="hero-unit">
+					<h1>
+						{{titulo}}
+					</h1>
+					<small>Hola</small>
+				</div>
+			</div>
+			
+			<div class="row">
+
+			{% include 'ventas/barraLateralIzquierdo.html' %}
+				
+				<div class="span9">
+					<div class="well sidebar-nav">
+						<ul class="nav nav-list">
+							<li class="nav-header"></li><br>
+								<p aling="justify">
+								<h1>
+									{{ msg}}
+								</h1>
+									<form action="" method="POST">
+										{% csrf_token %}
+										<button class="btn btn-large btn-success">SI</button>
+									</form>
+									<a href="{%url vista_agregar_ventas%}"><button class="btn btn-large btn-danger">NO</button></a>
+									
+								</p>
+						</ul>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+
+{% endblock %}
+

@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}
+	{{titulo}}
+{% endblock %}
+
+
+{% block content %}
+		<div class="container">
+			<div class="row">
+				<div class="hero-unit">
+					<h1>
+						{{titulo}}
+					</h1>
+					<small>Hola</small>
+				</div>
+			</div>
+			
+			<div class="row">
+				{% include 'ventas/barraLateralIzquierdo.html' %}
+				<div class="span9">
+					<h1 >{{msg}}</h1>
+					
+					
+					<div class="well sidebar-nav">
+						<ul class="nav nav-list">
+							<li class="nav-header"></li>
+							{% if lista_productos%}
+										<table class="table table-hover">
+											<theader>
+												<h4>
+													Lista De Productos
+												</h4>
+												<tr class="success">
+													<td><h5>Nombre Producto</h5</td>
+													<td><h5>Categoria</h5></td>
+													<td><h5>Precio Venta<h5></td>
+													<td><h5>Total de piezas<h5></td>
+													<td></td>
+											</theader>
+										{% for p in lista_productos%}
+											<tbody>
+												<tr class="info">
+													<td>{{ p.nombre_producto}}</td>
+													<td>{{ p.categoria.nombre_categoria}}</td>
+													<td>{{ p.precio_venta}}</td>
+													<td>{{ p.total_piezas }}</td>
+													<td><a class="btn" href="/addVentas/{{p.codigo}}"><i class="icon-plus"></i>Agregar Al Carrito</a></td>
+												</tr>
+										
+											</tbody>
+										{% endfor %}
+										</table>
+									{% else%}
+										<p>No se han agregado nungu producto</p>
+									{% endif%}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+{% endblock %}
+

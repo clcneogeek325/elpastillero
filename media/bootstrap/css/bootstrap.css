@@ -2257,6 +2257,7 @@ table th[class*="span"],
   background-color: #d9edf7;
 }
 
+
 .table-hover tbody tr.success:hover > td {
   background-color: #d0e9c6;
 }

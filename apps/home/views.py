@@ -13,7 +13,7 @@ def index_view(request):
 	if request.user.is_authenticated():
 		return render_to_response('index.html',context_instance=RequestContext(request))
 	else:
-		return HttpResponseRedirect('/login')
+		return HttpResponseRedirect('/login/')
 
 def comprobar_existencia():
 	if Farmacia.objects.exists():
@@ -22,7 +22,7 @@ def comprobar_existencia():
 		return True  #aun no exiten refistros
 
 def view_add_farmacia(request):
-	if request.user.is_authenticated():
+	if request.user.is_authenticated() and request.user.is_staff:
 		info = "informacion"
 		if request.method == "POST":
 			form = FarmaciaForm(request.POST,request.FILES)
@@ -46,7 +46,7 @@ def view_add_farmacia(request):
 		return HttpResponseRedirect('/login')
 	
 def view_list_farmacia(request):
-	if request.user.is_authenticated():
+	if request.user.is_authenticated() and request.user.is_staff:
 		farmacia = Farmacia.objects.filter(status=True)
 		status_lista = "active"
 		existencia = comprobar_existencia()
@@ -55,7 +55,7 @@ def view_list_farmacia(request):
 	else:
 		return HttpResponseRedirect('/login')
 def view_edit_farmacia(request,id_farmacia):
-	if request.user.is_authenticated():
+	if request.user.is_authenticated() and request.user.is_staff:
 		farmacia = Farmacia.objects.get(id=id_farmacia)
 		if request.method == "GET":
 			formulario = FarmaciaForm(initial={

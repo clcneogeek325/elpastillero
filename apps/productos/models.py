@@ -15,6 +15,7 @@ class Producto(models.Model):
 	precio_venta = models.FloatField(max_length=10)
 	numero_minimo_piezas = models.IntegerField(default=0)
 	status = models.BooleanField(default=True)
+	tiene_codigo = models.BooleanField(default=True)
 	def __unicode__(self):
 		return self.nombre_producto
 		

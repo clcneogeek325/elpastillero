@@ -23,10 +23,15 @@
 					<div class="well sidebar-nav">
 						<ul class="nav nav-list">
 							<li class="nav-header"></li>
-						<h1>
-							Obtener el mejor proveedor
-						</h1>
+						<h4>
+							Ingrese el codigo del producto y presione siguiente
+						</h4>
+							<form method="POST">
+								{% csrf_token %}
+								{{ form }}
+								<button class="btn btn-primary btn-large">Siguiente</button>
 								
+							</form>
 						</ul>
 						
 					</div>

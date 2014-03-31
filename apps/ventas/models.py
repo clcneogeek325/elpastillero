@@ -7,6 +7,7 @@ from apps.Personal.models import Personal
 from apps.productos.models import Producto
 
 class Tabla_temporal(models.Model):
+	personal = models.ForeignKey(Personal)
 	producto = models.ForeignKey(Producto)
 	numero_piezas = models.IntegerField(max_length=5)
 	precio_compra = models.FloatField(max_length=10)

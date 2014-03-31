@@ -28,16 +28,17 @@
 													<h1>
 														Datos de la farmacia
 													</h1>
-													<tr>
+													<tr class="info">
 														<td><h4>Nombre De La Farmacia</h4></td>
 														<td><h4>Direccion</h4></td>
 														<td><h4>Telefono</h4></td>
+														<td><h4></h4></td>
 													</tr>
 													
 												</theader>
 										{% for local in farmacia %}
 												<tbody>
-													<tr>
+													<tr class="success">
 														<td> {{local.nombre}}</td>
 														<td> {{local.direccion}}</td>
 														<td> {{local.telefono}}</td>
