@@ -156,13 +156,17 @@ def view_report_today(request):
 		titulo = "ESte es el reporte del dia de hoy"
 		msg = "Esta es la utilidad generada por todas la ventas"
 		l =u.values()
-		t_u = l[0] 
+		t_u = str(l[0]) 
+		
 		ctx = {'msg':msg,'titulo':titulo,
 			   'status_reporte_diario':'active',
 			   'productos':list_p,
-			   'total_utilidad':t_u}
-		return render_to_response('reportes/reporteDiario.html',ctx,
+			   'total_utilidad':t_u,
+			   'pagesize':'A4'}
+		html = render_to_string('reportes/reporteDiario.html',ctx,
 				context_instance=RequestContext(request))
+		return generar_pdf(html)
+		
 	else:
 		return HttpResponseRedirect('/login')
 			
@@ -179,9 +183,12 @@ def view_report_week(request):
 		ctx = {'msg':msg,'titulo':titulo,
 		'status_reporte_semanal':'active',
 		'productos':list_p,
-		'total_utilidad':t_u}
-		return render_to_response('reportes/reporteSemanal.html',ctx,
+		'total_utilidad':t_u,
+		'pagesize':'A4'}
+		
+		html = render_to_string('reportes/reporteSemanal.html',ctx,
 				context_instance=RequestContext(request))
+		return generar_pdf(html)
 	else:
 		HttpResponseRedirect('/login')
 		
@@ -199,8 +206,10 @@ def view_report_month(request):
 		ctx = {'msg':msg,'titulo':titulo,
 		'status_reporte_mensual':'active',
 		'productos':list_p,
-		'total_utilidad':t_u}
-		return render_to_response('reportes/reporteMensual.html',ctx,
+		'total_utilidad':t_u,
+		'pagesize':'A4'}
+		html = render_to_string('reportes/reporteMensual.html',ctx,
 				context_instance=RequestContext(request))
+		return generar_pdf(html)
 	else:
 		HttpResponseRedirect('/login')

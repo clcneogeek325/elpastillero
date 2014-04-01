@@ -30,26 +30,13 @@
 						<br>
 							<form method="POST">
 								{% csrf_token %}
-								<div class="well">
-									<div id="datetimepicker4" class="input-append">
-										{{form.fecha}}
-										<span class="add-on">
-											<i data-time-icon="icon-time" data-date-icon="icon-calendar">
-											</i>
-											</span>
-									</div>
-								</div>
+								{{form.fecha}}
+
 								<br><br>
+								
 								<button class="btn btn-primary btn-large">Siguiente</button>
 							</form>
 							
-							<script type="text/javascript">
-									$(function() {
-										$('#datetimepicker4').datetimepicker({
-										 pickTime: false
-										});
-									});
-							</script>
 							{% if productos %}
 										<table class="table table-bordered">
 												<theader>

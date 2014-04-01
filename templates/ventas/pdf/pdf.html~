@@ -1,0 +1,17 @@
+<!doctype>
+<html>
+	<head>
+		<title>
+			Reporte Diario
+		</title>
+	</head>
+	<body>
+		<h1>
+			Este es el reposte del dioa de hoy
+		</h1>
+		<br>
+		<h4>
+			Las utilidades genradas del dia de hoy son
+		</h4>
+	</body>
+</html>

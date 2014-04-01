@@ -6,9 +6,9 @@
 	</ul>
 		<ul class="nav nav-list">
 		<li class="nav nav-header">Reportes</li>
-		<li class=""><a href="{% url  vista_reporte_un_dia %}">Elegir una fecha</a></li>
-		<li class=""><a href="{% url  vista_rango_dos_fechas %}">Elegir un dia,mes o semana completa</a></li>
-				<li class="{{ status_reporte_diario}}"><a href="{% url vista_reporte_diario%}">Reporte Dia de Hoy</a></li>
+		<li class="{{status_reporte_fecha}}"><a href="{% url  vista_reporte_un_dia %}">Elegir una fecha</a></li>
+		<li class="{{status_reporte_rango}}"><a href="{% url  vista_rango_dos_fechas %}">Elegir un dia,mes o semana completa</a></li>
+				<li class="{{ status_reporte_diario}}"><a href="{% url vista_reporte_diario%}" target="_blank">Reporte Dia de Hoy</a></li>
 		<li class="{{ status_reporte_semanal}}"><a href="{% url  vista_reporte_semanal %}">Reporte de la semana hasta hoy</a></li>
 		<li class="{{status_reporte_mensual}}"><a href="{% url  vista_reporte_mensual %}">Hace un mes hasta hoy</a></li>
 
@@ -16,8 +16,8 @@
 		</ul>
 		<ul class="nav nav-list">
 		<li class="nav nav-header">Productos caducados y agotados</li>
-		<li class=""><a href="{% url  vista_productos_caducados %}">Productos caducados</a></li>
-		<li class=""><a href="{% url  vista_productos_agotados %}">Productos agotados o por agotarse</a></li>
+		<li class="{{status_caducados}}"><a href="{% url  vista_productos_caducados %}">Productos caducados</a></li>
+		<li class="{{status_agotados}}"><a href="{% url  vista_productos_agotados %}">Productos agotados o por agotarse</a></li>
 
 	</ul>
 </div>
