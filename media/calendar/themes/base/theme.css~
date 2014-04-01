@@ -17,7 +17,7 @@
 .ui-widget {
 	font-family: Verdana,Arial,sans-serif/*{ffDefault}*/;
 	font-size: 1.1em/*{fsDefault}*/;
-	
+	position: absolute;top 50px;
 }
 .ui-widget .ui-widget {
 	font-size: 1em;

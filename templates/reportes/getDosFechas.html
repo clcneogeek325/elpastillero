@@ -27,19 +27,9 @@
 							{{total_utilidad}}
 						</h4>
 						<br>
-							<form method="POST">
+							<form method="POST" target="_blank">
 								{% csrf_token %}
-								<div class="form-row field-fecha-uno">
-									<div >
-										<p class="datetime">{{ form.fechauno }}</p>
-									</div>
-								</div>		
-								<div class="form-row field-fecha-dos">
-									<div >
-										<p class="datetime">{{ form.fechados }}</p>
-									</div>
-								</div>		
-								
+								Fecha uno : {{form.fechauno}} Fecha Dos :{{form.fechados}}
 								<button class="btn btn-primary btn-large">Siguiente</button>
 								
 							</form>

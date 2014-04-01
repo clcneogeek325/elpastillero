@@ -38,7 +38,7 @@
 											</theader>
 										{% for empleado in lista_personal%}
 											<tbody>
-												<tr>
+												<tr class="info">
 													<td>{{ empleado.nombre}}</td>
 													<td>{{ empleado.apellido_Paterno}}</td>
 													<td>{{ empleado.apellido_Materno}}</td>

@@ -28,10 +28,14 @@
 							{{msg}}
 						</h4>
 						<br>
-							<form method="POST">
+							<form method="POST" target="_blank">
 								{% csrf_token %}
 								{{form.fecha}}
-
+								<span>
+									<a href="#"><i class="icon-calendar"></i></a>
+								</span>
+								
+								
 								<br><br>
 								
 								<button class="btn btn-primary btn-large">Siguiente</button>
@@ -43,6 +47,7 @@
 													<h1>
 														<br>
 														{{total_utilidad}}
+														
 													</h1>
 													<tr class="success">
 														<td><h4>Nombre del producto</h4></td>

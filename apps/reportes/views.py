@@ -57,7 +57,8 @@ def view_rango_fechas(request):
 				   'status_reporte_fecha':'active',
 				   'msg':msg,
 				   'total_utilidad':u}
-			return render_to_response('reportes/getDosFechas.html',ctx,context_instance=RequestContext(request))
+			html = render_to_string('reportes/pdf/pdf.html',ctx,context_instance=RequestContext(request))
+			return generar_pdf(html)
 	else:
 		print "Fue un GET"
 		form = getRangoFechaForm()
@@ -80,11 +81,22 @@ def view_uniq_fecha(request):
 			print "est es la utilidad : ",u
 			form = getFechaForm()
 			msg = "Esta es la utilidad generada por las ventas "
+			titulo = "Usted ha seleccionado unafecha en especifica"
 			ctx = {'form':form,
 				   'productos':p,
+				   'titulo':titulo,
 				   'status_reporte_fecha':'active',
 				   'msg':msg,
 				   'total_utilidad':u}
+			html = render_to_string('reportes/pdf/pdf.html',ctx,context_instance=RequestContext(request))
+			return generar_pdf(html)
+		else:
+			print "Error de formulrio"
+			form = getFechaForm()
+			msg = "Tal vez llenaste mal la fecha"
+			ctx = {'form':form,
+					'msg':msg,
+				   'status_reporte_fecha':'active'}
 			return render_to_response('reportes/getUnaFecha.html',ctx,context_instance=RequestContext(request))
 	else:
 		print "Fue un GET"
@@ -103,7 +115,7 @@ def generar_pdf(html):
         return HttpResponse(result.getvalue(), mimetype='application/pdf')
     return HttpResponse('Error al generar el PDF: %s' % cgi.escape(html))
 
-def view_ejemplo_pdf(request):
+def pdf(request):
     # vista de ejemplo con un hipotético modelo Libro
     ctx = {'pagesize':'A4'}
     html = render_to_string('reportes/datos_pdf.html', ctx,

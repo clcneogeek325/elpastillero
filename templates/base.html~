@@ -13,21 +13,54 @@
 		<script src="/media/bootstrap/js/bootstrap.js"></script>
 		<script src="/media/bootstrap/js/bootstrap.min.js"></script>
 		<link rel="stylesheet" href="/media/calendar/themes/base/all.css">
-		<script src="/media/calendar/jquery.js"></script>
+		<script src="/media/js/jquery-1.4.2.js"></script>
 		<script src="/media/calendar/ui/core.js"></script>
 		<script src="/media/calendar/ui/widget.js"></script>
 		<script src="/media/calendar/ui/datepicker.js"></script>
-		<link rel="stylesheet" href="/media/calendar/demos/demos.css">
+<!--		<link rel="stylesheet" href="/media/calendar/demos/demos.css">-->
 		
 
 		<script>
-				$(function() {
-					$( "#id_fecha" ).datepicker();
+				$("calendar").onClick(function() {
+					$("#calendar").datepicker();
+						$( "#id_fecha" ).change(function() {
+						cadena=$("#id_fecha").attr("value");
+						mes = cadena.substring(0,2);
+						dia = cadena.substring(3,5);
+						anio = cadena.substring(6,10);
+						
+						fechaCompleta=dia+"/"+mes+"/"+anio;
+						$( "#id_fecha" ).attr('value',fechaCompleta);
+					});
+					
+					$("#id_fechauno").datepicker();
+						$( "#id_fechauno" ).change(function() {
+						cadena=$("#id_fechauno").attr("value");
+						mes = cadena.substring(0,2);
+						dia = cadena.substring(3,5);
+						anio = cadena.substring(6,10);
+						
+						fechaCompleta=dia+"/"+mes+"/"+anio;
+						$( "#id_fechauno" ).attr('value',fechaCompleta);
+					});
+					
+					$("#id_fechados").datepicker();
+						$( "#id_fechados" ).change(function() {
+						cadena=$("#id_fechados").attr("value");
+						mes = cadena.substring(0,2);
+						dia = cadena.substring(3,5);
+						anio = cadena.substring(6,10);
+						
+						fechaCompleta=dia+"/"+mes+"/"+anio;
+						$( "#id_fechados" ).attr('value',fechaCompleta);
+					});
 				});
+
 
 		</script>
 		{% if merca %}
 			<script src="/media/js/eventos.js" type="text/javascript"></script>
+		<script src="/media/js/calendarios.js" type="text/javascript"></script>
 		{% endif %}
 	
 	</head>

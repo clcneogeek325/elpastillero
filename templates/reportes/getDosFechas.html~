@@ -29,17 +29,7 @@
 						<br>
 							<form method="POST">
 								{% csrf_token %}
-								<div class="form-row field-fecha-uno">
-									<div >
-										<p class="datetime">{{ form.fechauno }}</p>
-									</div>
-								</div>		
-								<div class="form-row field-fecha-dos">
-									<div >
-										<p class="datetime">{{ form.fechados }}</p>
-									</div>
-								</div>		
-								
+								Fecha uno : {{form.fechauno}} Fecha Dos :{{form.fechados}}
 								<button class="btn btn-primary btn-large">Siguiente</button>
 								
 							</form>
@@ -50,7 +40,7 @@
 														<br>
 														
 													</h1>
-													<tr>
+													<tr class="success">
 														<td><h4>Nombre del producto</h4></td>
 														<td><h4>Nombre del personal</h4></td>
 														<td><h4>Fecha venta</h4></td>
@@ -63,7 +53,7 @@
 												</theader>
 										{% for p in productos %}
 												<tbody>
-													<tr>
+													<tr class="info">
 														<td> {{p.producto.nombre_producto}}</td>
 														<td> {{p.venta.personal}}</td>
 														<td> {{p.fecha_venta}}</td>
