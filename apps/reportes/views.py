@@ -54,9 +54,18 @@ def view_rango_fechas(request):
 			msg = "Esta es la utilidad generada por las ventas "
 			ctx = {'form':form,
 				   'productos':p,
-				   'status_reporte_fecha':'active',
+				   'status_reporte_rango':'active',
+				   'titulo':titulo,
 				   'msg':msg,
 				   'total_utilidad':u}
+			html = render_to_string('reportes/pdf/pdf.html',ctx,context_instance=RequestContext(request))
+			return generar_pdf(html)
+		else:
+			titulo = "Reporte de de un rango de fechas"
+			msg = "Revise bien por fabor talves se equiboco al poner algunos datos"
+			ctx = {'status_reporte_rango':'active',
+					'titulo':titulo,
+				   'msg':msg}
 			html = render_to_string('reportes/pdf/pdf.html',ctx,context_instance=RequestContext(request))
 			return generar_pdf(html)
 	else:
@@ -64,6 +73,7 @@ def view_rango_fechas(request):
 		form = getRangoFechaForm()
 		msg = "Ingrese una fecha y presione siguinete"
 		ctx = {'form':form,
+				'msg':msg,
 			   'status_reporte_rango':'active'}
 		return render_to_response('reportes/getDosFechas.html',ctx,context_instance=RequestContext(request))
 
@@ -92,12 +102,14 @@ def view_uniq_fecha(request):
 			return generar_pdf(html)
 		else:
 			print "Error de formulrio"
-			form = getFechaForm()
-			msg = "Tal vez llenaste mal la fecha"
+			titulo = "Usted ha seleccionado unafecha en especifica"
+			msg = "Tal vez llenaste mal la fecha revisa bien por fabor"
 			ctx = {'form':form,
 					'msg':msg,
-				   'status_reporte_fecha':'active'}
-			return render_to_response('reportes/getUnaFecha.html',ctx,context_instance=RequestContext(request))
+					'titulo':titulo,
+					'status_reporte_fecha':'active'}
+			html = render_to_string('reportes/pdf/pdf.html',ctx,context_instance=RequestContext(request))
+			return generar_pdf(html)
 	else:
 		print "Fue un GET"
 		form = getFechaForm()

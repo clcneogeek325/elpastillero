@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<title>
+			{{titulo}}
+		</title>
+	<style type="text/css">
+		#titulo
+			{
+			background-color: #d3d7cf;
+			border-radius:3px; 
+			}
+		#titulos
+			{
+			background-color: #729fcf;
+			
+			border-radius:3px; 
+			}
+		#registros
+			{
+			background-color: #b2e3c5;
+			}
+		table { 
+			border-bottom: 1px solid #999;
+			border-top: 1px solid #999;
+			border-left: 1px solid #999;
+			border-right: 1px solid #999;
+			}
+	</style>
+	
+	</head>
+	<body>
+		<h1 id="titulo" align="center">
+		{{ titulo}}
+		</h1>
+			{{msg}}
+		{% if productos %}
+						<h1>
+
+							{{total_utilidad}}
+						</h1>
+			<table >
+					<theader>
+
+						<tr id="titulos">
+							<td><h4>Nombre del producto</h4></td>
+							<td><h4>Nombre del personal</h4></td>
+							<td><h4>Fecha venta</h4></td>
+							<td><h4>Precio Compra</h4></td>
+							<td><h4>Precion Venta</h4></td>
+							<td><h4>Piezas Vendidas</h4></td>
+							<td><h4>Valor Total Piezas Vendidas</h4></td>
+						</tr>
+						
+					</theader>
+			{% for p in productos %}
+					<tbody>
+						<tr id="registros">
+							<td> {{p.producto.nombre_producto}}</td>
+							<td> {{p.venta.personal}}</td>
+							<td> {{p.fecha_venta}}</td>
+							<td> {{p.precio_compra|escape}}</td>
+							<td> {{p.precio_venta|escape}}</td>
+							<td> {{p.piezas_vendias}}</td>
+							<td> {{p.valor_piezas_vendidas|escape}}</td>
+							
+						</tr>
+					</tbody>
+			{% endfor %}
+			</table>
+		{% else %}
+			<p>No se han encontrado  productos</p>
+		{% endif %}
+
+	</body>
+</html>
+
+
+
