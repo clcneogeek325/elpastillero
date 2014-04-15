@@ -15,12 +15,37 @@ from apps.ventas.models import Productos_vendidos
 from apps.reportes.forms import getMejorProveedor
 from apps.productos.models import Mejor_proveedor
 from django.db.models import Avg, Max, Min, Count
-from apps.reportes.forms import getFechaForm,getRangoFechaForm
+from apps.reportes.forms import getFechaForm,getRangoFechaForm,getCampoForm
 from apps.productos.models import Producto
 from datetime import datetime
 from apps.mercancia.models import Mercancia
 from django.shortcuts import render_to_response
 
+
+
+def view_search_mercancia(request):
+	if request.method == "POST":
+		print "Fue un POST"
+		form = getRangoFechaForm(request.POST)
+		formcampo = getCampoForm(request.POST)
+		if form.is_valid() and formcampo.is_valid():
+			fechainicio = form.cleaned_data['fechauno']
+			fechafin = form.cleaned_data['fechados']
+			tipobusqueda = formcampo.cleaned_data['campo']
+			busqueda = formcampo.cleaned_data['busqueda']
+			dt_fecha1 = datetime.strptime(str(fechainicio), "%Y-%m-%d")
+			dt_fecha2 = datetime.strptime(str(fechafin), "%Y-%m-%d")
+			merca = Mercancia.objects.filter(fecha_ingreso__gte=dt_fecha1,fecha_ingreso__lte=dt_fecha2)
+		else:
+			print "El formulrio no es valido"
+			
+	else:
+		print "Fue un GET"
+		form = getRangoFechaForm()
+		formcampo = getCampoForm()
+		ctx = {'form':form,'formcampo':formcampo}
+		return render_to_response('reportes/buscarMercancia.html',ctx,
+							context_instance=RequestContext(request))
 
 
 def view_prodcts_agotados(request):
@@ -58,6 +83,7 @@ def view_rango_fechas(request):
 				u = Venta.objects.extra(where=[consulta]).aggregate(Sum('utilidad')).values().__getitem__(0)
 				print "est es la utilidad : ",u
 				form = getRangoFechaForm()
+				titulo = "Este es un reporte especial"
 				msg = "Esta es la utilidad generada por las ventas "
 				ctx = {'form':form,
 					   'productos':p,

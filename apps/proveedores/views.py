@@ -34,10 +34,22 @@ def view_add_proveedor(request):
 					 'msg_btn':msg_btn}
 				return render_to_response('proveedores/mensajes.html',ctx,
 						context_instance=RequestContext(request))
+			else:
+				formulario = ProveedorForm()
+				msg = "Ups lo sentimos el usuario no se pudo agregregar \
+					probablemente por que algun campo bno esta lleno o la informacion es incorrecta"
+				status_agregar = "active"
+				ctx={'form':formulario,
+					'msg':msg,
+					 'status_agregar':status_agregar}
+				return render_to_response('proveedores/addProveedores.html',ctx,
+							context_instance=RequestContext(request))
 		else:
 			formulario = ProveedorForm()
 			status_agregar = "active"
+			msg = "Llene los siguinetes campoos para agregar un nuevo proveedor"
 			ctx={'form':formulario,
+				'msg':msg,
 				 'status_agregar':status_agregar}
 			return render_to_response('proveedores/addProveedores.html',ctx,
 						context_instance=RequestContext(request))
@@ -47,7 +59,7 @@ def view_add_proveedor(request):
 def view_delete_proveedor(request,id_proveedor):
 	if request.user.is_authenticated() and request.user.is_staff:
 		p = Proveedores.objects.filter(id=id_proveedor)
-		p.delete()
+		p.status = False
 		status_eliminar = "active"
 		msg_btn = "Regresar a la lista"
 		url = "/listProveedoresDel"

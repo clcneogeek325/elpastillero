@@ -22,7 +22,7 @@
 								<p aling="justify">
 									<form action="." method="POST">
 									{% csrf_token %}
-									{{ form_user.as_p }}
+									{{ form.as_p }}
 									<button class="btn btn-large btn-primary">Agregar</button>
 									</form>
 								</p>

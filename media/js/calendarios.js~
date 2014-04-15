@@ -1,12 +1,5 @@
-$(document).ready(function(){
 $(function() {
 	$( "#id_fecha_caducidad" ).datepicker( );
-
-
-			});
-$("#id_descuento_venta").change(function(evento){
-	alert("hola");
-		});
 
 });
 

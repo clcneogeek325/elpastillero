@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}
-	Agregar Inforormacio Acrca de la tienda
+	Actualizando datos de la farmacia
 {% endblock %}
 
 {% block content %}
@@ -8,7 +8,7 @@
 			<div class="row">
 				<div class="hero-unit">
 					<h1>
-						Agregar datos acerca de La Farmacia
+						Actualizando datos de la farmacia
 					</h1>
 					<small>Hola</small>
 				</div>
@@ -32,7 +32,7 @@
 														<td><h4>Nombre De La Farmacia</h4></td>
 														<td><h4>Direccion</h4></td>
 														<td><h4>Telefono</h4></td>
-														td><h4></h4></td>
+														<td><h4></h4></td>
 													</tr>
 													
 												</theader>

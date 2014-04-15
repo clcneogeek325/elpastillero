@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>~/Proyectos/elpastillero/templates/pc/editPc.html.html</title>
+<meta name="Generator" content="Vim/7.3">
+<meta name="plugin-version" content="vim7.3_v10">
+<meta name="syntax" content="htmldjango">
+<meta name="settings" content="number_lines,use_css,pre_wrap,expand_tabs">
+<style type="text/css">
+<!--
+pre { white-space: pre-wrap; font-family: monospace; color: #babdb6; background-color: #1e2426; }
+body { font-family: monospace; color: #babdb6; background-color: #1e2426; }
+.lnr { color: #3f4b4d; background-color: #000000; }
+.htmlEndTag { color: #888a85; }
+.htmlTitle { color: #8ae234; }
+.htmlArg { color: #d3d7cf; }
+.htmlTagName { color: #babdb6; }
+.htmlTag { color: #888a85; }
+.Identifier { color: #ffffff; }
+.Constant { color: #8ae234; }
+.Statement { color: #729fcf; }
+.PreProc { color: #fcaf3e; }
+-->
+</style>
+</head>
+<body>
+<pre>
+<span class="lnr"> 1 </span><span class="PreProc">{% </span><span class="Statement">extends</span><span class="PreProc"> </span><span class="Constant">&quot;base.html&quot;</span><span class="PreProc"> %}</span>
+<span class="lnr"> 2 </span><span class="PreProc">{% </span><span class="Statement">block</span><span class="PreProc"> </span><span class="Identifier">title</span><span class="PreProc"> %}</span>
+<span class="lnr"> 3 </span>        Editar categorias de productos
+<span class="lnr"> 4 </span><span class="PreProc">{% </span><span class="Statement">endblock</span><span class="PreProc"> %}</span>
+<span class="lnr"> 5 </span>
+<span class="lnr"> 6 </span><span class="PreProc">{% </span><span class="Statement">block</span><span class="PreProc"> content %}</span>
+<span class="lnr"> 7 </span>                <span class="htmlTag">&lt;</span><span class="htmlTagName">div</span><span class="htmlTag"> </span><span class="htmlArg">class</span><span class="htmlTag">=</span><span class="Constant">&quot;container&quot;</span><span class="htmlTag">&gt;</span>
+<span class="lnr"> 8 </span>                        <span class="htmlTag">&lt;</span><span class="htmlTagName">div</span><span class="htmlTag"> </span><span class="htmlArg">class</span><span class="htmlTag">=</span><span class="Constant">&quot;row&quot;</span><span class="htmlTag">&gt;</span>
+<span class="lnr"> 9 </span>                                <span class="htmlTag">&lt;</span><span class="htmlTagName">div</span><span class="htmlTag"> </span><span class="htmlArg">class</span><span class="htmlTag">=</span><span class="Constant">&quot;hero-unit&quot;</span><span class="htmlTag">&gt;</span>
+<span class="lnr">10 </span>                                        <span class="htmlTag">&lt;</span><span class="htmlTagName">h1</span><span class="htmlTag">&gt;</span>
+<span class="lnr">11 </span><span class="htmlTitle">                                                Corregir algunas categorias</span>
+<span class="lnr">12 </span><span class="htmlTitle">                                        </span><span class="htmlEndTag">&lt;/</span><span class="htmlTagName">h1</span><span class="htmlEndTag">&gt;</span>
+<span class="lnr">13 </span>                                        <span class="htmlTag">&lt;</span><span class="htmlTagName">small</span><span class="htmlTag">&gt;</span>Hola<span class="htmlEndTag">&lt;/</span><span class="htmlTagName">small</span><span class="htmlEndTag">&gt;</span>
+<span class="lnr">14 </span>                                <span class="htmlEndTag">&lt;/</span><span class="htmlTagName">div</span><span class="htmlEndTag">&gt;</span>
+<span class="lnr">15 </span>                        <span class="htmlEndTag">&lt;/</span><span class="htmlTagName">div</span><span class="htmlEndTag">&gt;</span>
+<span class="lnr">16 </span>
+<span class="lnr">17 </span>                        <span class="htmlTag">&lt;</span><span class="htmlTagName">div</span><span class="htmlTag"> </span><span class="htmlArg">class</span><span class="htmlTag">=</span><span class="Constant">&quot;row&quot;</span><span class="htmlTag">&gt;</span>
+<span class="lnr">18 </span>                        <span class="PreProc">{% </span><span class="Statement">include</span><span class="PreProc"> 'productos/newProductos/barraLateralIzquierda.html' %}</span>
+<span class="lnr">19 </span>                                <span class="htmlTag">&lt;</span><span class="htmlTagName">div</span><span class="htmlTag"> </span><span class="htmlArg">class</span><span class="htmlTag">=</span><span class="Constant">&quot;span9&quot;</span><span class="htmlTag">&gt;</span>
+<span class="lnr">20 </span>                                        <span class="htmlTag">&lt;</span><span class="htmlTagName">div</span><span class="htmlTag"> </span><span class="htmlArg">class</span><span class="htmlTag">=</span><span class="Constant">&quot;well sidebar-nav&quot;</span><span class="htmlTag">&gt;</span>
+<span class="lnr">21 </span>                                                <span class="htmlTag">&lt;</span><span class="htmlTagName">ul</span><span class="htmlTag"> </span><span class="htmlArg">class</span><span class="htmlTag">=</span><span class="Constant">&quot;nav nav-list&quot;</span><span class="htmlTag">&gt;</span>
+<span class="lnr">22 </span>                                                        <span class="htmlTag">&lt;</span><span class="htmlTagName">li</span><span class="htmlTag"> </span><span class="htmlArg">class</span><span class="htmlTag">=</span><span class="Constant">&quot;nav-header&quot;</span><span class="htmlTag">&gt;</span><span class="htmlEndTag">&lt;/</span><span class="htmlTagName">li</span><span class="htmlEndTag">&gt;</span><span class="htmlTag">&lt;</span><span class="htmlTagName">br</span><span class="htmlTag">&gt;</span>
+<span class="lnr">23 </span>                                                                <span class="htmlTag">&lt;</span><span class="htmlTagName">form</span><span class="htmlTag"> </span><span class="htmlArg">action</span><span class="htmlTag">=</span><span class="Constant">&quot;.&quot;</span><span class="htmlTag"> </span><span class="htmlArg">method</span><span class="htmlTag">=</span><span class="Constant">&quot;POST&quot;</span><span class="htmlTag">&gt;</span>
+<span class="lnr">24 </span>                                                                <span class="PreProc">{% </span><span class="Statement">csrf_token</span><span class="PreProc"> %}</span>
+<span class="lnr">25 </span>                                                                <span class="PreProc">{{ form.as_p }}</span>
+<span class="lnr">26 </span>                                                                        <span class="htmlTag">&lt;</span><span class="htmlTagName">button</span><span class="htmlTag"> </span><span class="htmlArg">class</span><span class="htmlTag">=</span><span class="Constant">&quot;btn btn-large btn-primary&quot;</span><span class="htmlTag">&gt;</span>Guradar<span class="htmlEndTag">&lt;/</span><span class="htmlTagName">button</span><span class="htmlEndTag">&gt;</span>
+<span class="lnr">27 </span>                                                                        <span class="htmlEndTag">&lt;/</span><span class="htmlTagName">form</span><span class="htmlEndTag">&gt;</span>
+<span class="lnr">28 </span>                                                                <span class="htmlEndTag">&lt;/</span><span class="htmlTagName">p</span><span class="htmlEndTag">&gt;</span>
+<span class="lnr">29 </span>                                                <span class="htmlEndTag">&lt;/</span><span class="htmlTagName">ul</span><span class="htmlEndTag">&gt;</span>
+<span class="lnr">30 </span>                                <span class="htmlEndTag">&lt;/</span><span class="htmlTagName">div</span><span class="htmlEndTag">&gt;</span>
+<span class="lnr">31 </span>                        <span class="htmlEndTag">&lt;/</span><span class="htmlTagName">div</span><span class="htmlEndTag">&gt;</span>
+<span class="lnr">32 </span>                <span class="htmlEndTag">&lt;/</span><span class="htmlTagName">div</span><span class="htmlEndTag">&gt;</span>
+<span class="lnr">33 </span>
+<span class="lnr">34 </span><span class="PreProc">{% </span><span class="Statement">endblock</span><span class="PreProc"> %}</span>
+<span class="lnr">35 </span>
+</pre>
+</body>
+</html>

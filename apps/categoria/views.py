@@ -22,7 +22,7 @@ def view_list_categoriaDel(request):
 		ctx = {'lista_categorias':lista_de_categorias,
 		'status_del_producto':status_del_producto,
 		'icono':btn_icon,
-		'titulo':titulo}
+		'titulo':titulo,'status_categoria':'active'}
 		return render_to_response('productos/newProductos/listaCategorias.html',ctx,
 									context_instance=RequestContext(request))
 	else:
@@ -37,7 +37,7 @@ def view_list_categoriaEdit(request):
 		ctx = {'lista_categorias':lista_de_categorias,
 		'status_edit_producto':status_edit_producto,
 		'icono':btn_icon,
-		'titulo':titulo}
+		'titulo':titulo,'status_categoria':'active'}
 		return render_to_response('productos/newProductos/listaCategorias.html',ctx,
 									context_instance=RequestContext(request))
 	else:
@@ -58,9 +58,22 @@ def view_add_categoria(request):
 				titulo = "Agregar una nueva categoria"
 				ctx = {'mensaje':mensaje,
 				'status_add_categoria':status_add_categoria,
-				'titulo':titulo}
+				'titulo':titulo,'status_categoria':'active'}
 				return render_to_response('productos/newProductos/categorias/mensajeCategoria.html',ctx,
 										context_instance=RequestContext(request))
+			else:			
+				cats = Categoria.objects.filter(status=True)
+				form = CategoriaForm()
+				mensaje = "Escribe un nombre  de categoria"
+				status_add_categoria = "active"
+				titulo = "Agregar una nueva categoria"
+				ctx = {'form':form,
+				'lista_categorias':cats,
+				'status_add_categoria':status_add_categoria,'status_categoria':'active'}
+				return render_to_response('productos/newProductos/categorias/addCategorias.html',ctx,
+										context_instance=RequestContext(request))
+
+
 		else:
 			cats = Categoria.objects.filter(status=True)
 			form = CategoriaForm()
@@ -68,7 +81,7 @@ def view_add_categoria(request):
 			titulo = "Agregar una nueva categoria"
 			ctx = {'form':form,
 			'lista_categorias':cats,
-			'status_add_categoria':status_add_categoria}
+			'status_add_categoria':status_add_categoria,'status_categoria':'active'}
 			return render_to_response('productos/newProductos/categorias/addCategorias.html',ctx,
 									context_instance=RequestContext(request))
 	else:
@@ -89,14 +102,15 @@ def view_edit_categoria(request,id_categoria):
 				status_add_categoria = "active"
 				ctx = {'mensaje':msj,
 				'status_add_categoria':status_add_categoria,
-				'titulo':titulo}
+				'titulo':titulo,'status_categoria':'active'}
 				return render_to_response('productos/newProductos/categorias/mensajeCategoria.html',ctx,
 										context_instance=RequestContext(request))
 		else:
 			form  = CategoriaForm(instance=cat)
 			status_add_categoria = "active"
 			ctx = {'form':form,
-			'status_add_categoria':status_add_categoria}
+			'status_add_categoria':status_add_categoria,
+			'status_categoria':'active'}
 			return render_to_response('productos/newProductos/categorias/editCategorias.html',ctx,
 										context_instance=RequestContext(request))
 	else:
@@ -106,20 +120,20 @@ def view_rm_categoria(request,id_categoria):
 	if request.user.is_authenticated():
 		cat = Categoria.objects.get(pk=id_categoria)
 		if request.method == "POST":
-			cat.delete()
+			cat.status = False
 			titulo = "Eliminar una categoria de productos"
 			info  = "La categoria se ha eliminado correctamente"
 			status_add_categoria = "active"
 			ctx = {'mensaje':info,
 					'status_add_categoria':status_add_categoria,
-					'titulo':titulo}
+					'titulo':titulo,'status_categoria':'active'}
 			return render_to_response('productos/newProductos/categorias/mensajeCategoria.html',ctx,
 									context_instance=RequestContext(request))
 		else:
 			form = CategoriaForm(instance=cat)
 			status_add_categoria = "active"
 			ctx = {'form':form,
-				   'status_add_categoria':status_add_categoria}
+				   'status_add_categoria':status_add_categoria,'status_categoria':'active'}
 			return render_to_response('productos/newProductos/categorias/rmCategorias.html',
 									ctx,context_instance=RequestContext(request))
 	else:

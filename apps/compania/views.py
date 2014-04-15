@@ -22,7 +22,7 @@ def view_listCompaniaDel(request):
 		ctx = {'lista_companias':lista_de_companias,
 				'status_del_producto':status_del_producto,
 				'icono':btn_icon,
-				'titulo':titulo}
+				'titulo':titulo,'status_compania':'active'}
 		return render_to_response('productos/newProductos/listaCompanias.html',ctx,
 									context_instance=RequestContext(request))
 	else:
@@ -37,7 +37,7 @@ def view_listCompaniaEdit(request):
 		ctx = {'lista_companias':lista_de_companias,
 				'status_edit_producto':status_edit_producto,
 				'icono':btn_icon,
-				'titulo':titulo}
+				'titulo':titulo,'status_compania':'active'}
 		return render_to_response('productos/newProductos/listaCompanias.html',ctx,
 									context_instance=RequestContext(request))
 	else:
@@ -52,18 +52,18 @@ def view_rm_compania(request,id_compania):
 		status_add_compania = "active"
 		compania = Compania.objects.get(pk=id_compania)
 		if request.method == "POST":
-			compania.delete()
+			compania.status = False
 			titulo = "Eliminar una compania"
 			info = "El registro se elimino correctamente"
 			ctx = {'mensaje':info,
 					'status_add_compania':status_add_compania,
-					'titulo':titulo}
+					'titulo':titulo,'status_compania':'active'}
 			return render_to_response('productos/newProductos/companias/mensajeCompania.html',ctx,
 									context_instance=RequestContext(request))
 		else:
 			form = CompaniaForm(instance=compania)
 			ctx = {'form':form,
-					'status_add_compania':status_add_compania}
+					'status_add_compania':status_add_compania,'status_compania':'active'}
 			return render_to_response('productos/newProductos/companias/rmCompanias.html',ctx,
 									context_instance=RequestContext(request))
 	else:
@@ -85,14 +85,14 @@ def view_edit_compania(request,id_compania):
 				status_add_compania = "active"
 				ctx = {"mensaje":info,
 						'status_add_compania':status_add_compania,
-						'titulo':titulo}
+						'titulo':titulo,'status_compania':'active'}
 				return render_to_response('productos/newProductos/companias/mensajeCompania.html',ctx,
 										context_instance=RequestContext(request))
 		else:
 			form = CompaniaForm(instance=compania)
 			status_add_compania = "active"
 			ctx = {'form':form,
-			'status_add_compania':status_add_compania}
+			'status_add_compania':status_add_compania,'status_compania':'active'}
 			return render_to_response('productos/newProductos/companias/editCompanias.html',ctx,
 										context_instance=RequestContext(request))
 	else:
@@ -113,16 +113,19 @@ def view_add_compania(request):
 				status_add_compania = "active"
 				ctx = {'mensaje':info,
 				'status_add_compania':status_add_compania,
-				'titulo':titulo}
+				'titulo':titulo,'status_compania':'active'}
 				return render_to_response('productos/newProductos/companias/mensajeCompania.html',
 										ctx,context_instance=RequestContext(request))
+			else:
+				return HttpResponseRedirect('/addCompania')
+
 		else:
 			lista_de_companias = obtenerCompanias()
 			form = CompaniaForm()
 			status_add_compania = "active"
 			ctx = {'form':form,
 			'lista_companias':lista_de_companias,
-			'status_add_compania':status_add_compania}
+			'status_add_compania':status_add_compania,'status_compania':'active'}
 			return render_to_response('productos/newProductos/companias/addCompanias.html',
 										ctx,context_instance=RequestContext(request))
 	else:

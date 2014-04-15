@@ -17,30 +17,36 @@ from django.contrib.auth import login,logout,authenticate
 """
 
 def view_add_produc_sin_cod(request,id_producto):
-	if request.method == "POST":
-		form = ProductoCompletoSinCodForm(request.POST)
-		if form.is_valid():
-			edit = form.save(commit=False)
-			edit.status = True
-			edit.tiene_codigo = False
-			edit.save()
-			msg = "El producto ha sido registrado correctamente"
-			titulo = "Agregar productos sin codigo de barras"
-			msg_btn = "Agregar mas prodoctos"
-			url = "/tipo"
-			ctx = {'mensaje':msg,
-					'url':url,
-					'titulo':titulo,
-					'mensaje_btn':msg_btn}
-			return render_to_response('productos/newProductos/sinCodigo/mensajes.html',ctx,
-									context_instance=RequestContext(request))
+	if request.user.is_authenticated() and request.user.is_staff:
+		if request.method == "POST":
+			form = ProductoCompletoSinCodForm(request.POST)
+			if form.is_valid():
+				edit = form.save(commit=False)
+				edit.status = True
+				edit.tiene_codigo = False
+				edit.save()
+				msg = "El producto ha sido registrado correctamente"
+				titulo = "Agregar productos sin codigo de barras"
+				msg_btn = "Agregar mas prodoctos"
+				url = "/tipo"
+				ctx = {'mensaje':msg,
+						'url':url,
+						'titulo':titulo,
+						'mensaje_btn':msg_btn}
+				return render_to_response('productos/newProductos/sinCodigo/mensajes.html',ctx,
+										context_instance=RequestContext(request))
+		else:
+			print "Fue un GET"
+			prod_sin = productoSinCodigo.objects.get(pk=id_producto)
+			form = ProductoCompletoSinCodForm(initial={'codigo':id_producto,
+								'nombre_producto':prod_sin.nombre_producto})
+			ctx = {'form':form}
+			return render_to_response('productos/newProductos/sinCodigo/addProducto.html',ctx,
+										context_instance=RequestContext(request))
 	else:
-		print "Fue un GET"
-		prod_sin = productoSinCodigo.objects.get(pk=id_producto)
-		form = ProductoCompletoSinCodForm(initial={'codigo':id_producto,'nombre_producto':prod_sin.nombre_producto})
-		ctx = {'form':form}
-		return render_to_response('productos/newProductos/sinCodigo/addProducto.html',ctx,
-									context_instance=RequestContext(request))
+		return HttpResponseRedirect('/login')
+
+
 
 def view_p_sinCodigo_get(request):
 	if request.user.is_authenticated() and request.user.is_staff:
@@ -397,11 +403,14 @@ def view_edit_productos(request,codigo_barras):
 			edit = formulario.save(commit=False)
 			edit.status = True
 			edit.save()
+			
 			status_edit_producto = "active"
 			msg_btn = "Actualizar otro producto"
 			msg = "Los datos del producto se han actualizado correctamnete"
 			titulo = "Dar de baja productos del sistema"
 			url = "/getCodigoProductoEdit"
+			if edit.tiene_codigo:
+				url = "/tipo"
 			ctx= {'titulo':titulo,
 				'mensaje_btn':msg_btn,
 				'mensaje':msg,
@@ -445,7 +454,7 @@ def view_login(request):
 					return HttpResponseRedirect('/')
 				elif usuario is not None and usuario.is_active:
 					login(request,usuario)
-					return HttpResponseRedirect('/addVentas')
+					return HttpResponseRedirect('/addVentas/0/')
 				else:
 					msg = "Usuario y/o paswords incorrectos"
 	form = LoginForm()

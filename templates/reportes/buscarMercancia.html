@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}
+	Obtener un reporte de las mercancia ingresada
+{% endblock %}
+
+{% block content %}
+		<div class="container">
+			<div class="row">
+				<div class="hero-unit">
+					<h1>
+						Obtener un reporte de las mercancia ingresada
+					</h1>
+					<small>Hola</small>
+				</div>
+			</div>
+			
+			<div class="row">
+
+			{% include 'reportes/barraLateralIzquierdo.html' %}
+				
+				<div class="span9">
+					<div class="well sidebar-nav">
+						<ul class="nav nav-list">
+							<li class="nav-header"></li>
+						<h4>
+							{{msg}}
+							{{total_utilidad}}
+						</h4>
+						<br>
+							<form method="POST" target="_blank">
+								{% csrf_token %}
+								Fecha uno : {{form.fechauno}} Fecha Dos :{{form.fechados}}<br>
+								Tipo de Busqueda : 
+								{{formcampo.campo}} 
+								Buscar : {{formcampo.busqueda }}
+
+								<button id="btnBuscar" class="btn btn-success btn-large">Buscar</button>
+								
+							</form>
+						</ul>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+
+{% endblock %}
+

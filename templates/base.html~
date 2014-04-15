@@ -21,8 +21,8 @@
 		
 
 		<script>
-				$("calendar").onClick(function() {
-					$("#calendar").datepicker();
+				$(function() {
+					$("#id_fecha").datepicker();
 						$( "#id_fecha" ).change(function() {
 						cadena=$("#id_fecha").attr("value");
 						mes = cadena.substring(0,2);

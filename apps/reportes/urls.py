@@ -12,5 +12,5 @@ urlpatterns = patterns('apps.reportes.views',
     url(r'^rangoFechas/$', 'view_rango_fechas', name='vista_rango_dos_fechas'),
     url(r'^lstCaducados/$', 'view_prodcts_caducados', name='vista_productos_caducados'),
     url(r'^lstAgotados/$', 'view_prodcts_agotados', name='vista_productos_agotados'),
-    
+    url(r'^buscarMercancia/$', 'view_search_mercancia', name='vista_buscar_mercancia'),
 )

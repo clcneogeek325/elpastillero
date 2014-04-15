@@ -133,6 +133,7 @@ INSTALLED_APPS = (
     'apps.productos',
     'apps.mercancia',
     'apps.ventas',
+    'apps.pc',
 )
 
 

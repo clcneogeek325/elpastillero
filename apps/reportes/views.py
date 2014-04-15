@@ -15,12 +15,70 @@ from apps.ventas.models import Productos_vendidos
 from apps.reportes.forms import getMejorProveedor
 from apps.productos.models import Mejor_proveedor
 from django.db.models import Avg, Max, Min, Count
-from apps.reportes.forms import getFechaForm,getRangoFechaForm
+from apps.reportes.forms import getFechaForm,getRangoFechaForm,getCampoForm
 from apps.productos.models import Producto
 from datetime import datetime
 from apps.mercancia.models import Mercancia
 from django.shortcuts import render_to_response
 
+
+
+def view_search_mercancia(request):
+	if request.method == "POST":
+		print "Fue un POST"
+		form = getRangoFechaForm(request.POST)
+		formcampo = getCampoForm(request.POST)
+		if form.is_valid() and formcampo.is_valid():
+			fechainicio = form.cleaned_data['fechauno']
+			fechafin = form.cleaned_data['fechados']
+			tipobusqueda = formcampo.cleaned_data['campo']
+			busqueda = formcampo.cleaned_data['busqueda']
+			dt_fecha1 = datetime.strptime(str(fechainicio), "%Y-%m-%d")
+			dt_fecha2 = datetime.strptime(str(fechafin), "%Y-%m-%d")
+			
+			print 'buscar',busqueda,' en ',tipobusqueda
+			if tipobusqueda == "fecha":
+				merca = Mercancia.objects.filter(fecha_ingreso__gte=dt_fecha1,
+								fecha_ingreso__lte=dt_fecha2)
+			else:
+				if tipobusqueda == "factura" and busqueda != "":
+					merca = Mercancia.objects.filter(fecha_ingreso__gte=dt_fecha1,
+									fecha_ingreso__lte=dt_fecha2,
+									factura=busqueda)
+				elif tipobusqueda == "categoria" and busqueda != "":
+					merca = Mercancia.objects.filter(fecha_ingreso__gte=dt_fecha1,
+								fecha_ingreso__lte=dt_fecha2,
+								categoria=busqueda)
+				elif tipobusqueda == "compania" and busqueda != "":
+					merca = Mercancia.objects.filter(fecha_ingreso__gte=dt_fecha1,
+								fecha_ingreso__lte=dt_fecha2,
+								compania=busqueda)
+				else:
+					merca = {}
+
+			titulo = "Estos son los resultado encontrados"
+			msg = "Esta es la lista de la mercancia ingresada por este periodo de tiempo"
+			ctx = {'titulo':titulo,
+				'msg':msg,
+				'lista_merca':merca}
+			html = render_to_string('reportes/pdf/pdfMercancia.html',ctx,
+								context_instance=RequestContext(request))
+			return generar_pdf(html)
+		else:
+			print "El formulrio no es valido"
+			form = getRangoFechaForm()
+			formcampo = getCampoForm()
+			ctx = {'form':form,'formcampo':formcampo}
+			return render_to_response('reportes/buscarMercancia.html',ctx,
+							context_instance=RequestContext(request))
+			
+	else:
+		print "Fue un GET"
+		form = getRangoFechaForm()
+		formcampo = getCampoForm()
+		ctx = {'form':form,'formcampo':formcampo}
+		return render_to_response('reportes/buscarMercancia.html',ctx,
+							context_instance=RequestContext(request))
 
 
 def view_prodcts_agotados(request):

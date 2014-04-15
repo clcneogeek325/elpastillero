@@ -1,10 +1,16 @@
 <div class="span3">
 	<ul class="nav nav-list">
-		<li class="nav nav-header">Acciones</li>
+		<li class="nav nav-header">Farmacia</li>
 		{% if existencia %}
 		<li class="{{status_add}}"><a href="{% url vista_agregar_farmacia %}">Agregar</a></li>	
 		{% endif %}
 		
 		<li class="{{ status_lista}}"><a href="{% url  vista_lista_farmacia %}">Actualizar</a></li>
+		<li class="nav nav-header">Categorias</li>
+		<li class="{{status_categoria }}"><a href="{% url vista_agregar_categoria %}">Agregar</a></li>	
+		<li class="nav nav-header">Companias</li>
+		<li class="{{status_compania}}"><a href="{% url vista_agregar_compania %}">Agregar</a></li>	
+		<li class="nav nav-header">Puestos de Teabajo</li>
+		<li class="{{status_pc}}"><a href="{% url vista_agregar_pc %}">Agregar</a></li>	
 	</ul>
 </div>

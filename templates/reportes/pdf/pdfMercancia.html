@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<title>
+			{{titulo}}
+		</title>
+	<style type="text/css">
+		#titulo
+			{
+			background-color: #d3d7cf;
+			border-radius:3px; 
+			}
+		#titulos
+			{
+			background-color: #729fcf;
+			
+			border-radius:3px; 
+			}
+		#registros
+			{
+			background-color: #b2e3c5;
+			}
+		table { 
+			border-bottom: 1px solid #999;
+			border-top: 1px solid #999;
+			border-left: 1px solid #999;
+			border-right: 1px solid #999;
+			}
+	</style>
+	
+	</head>
+	<body>
+		<h1 id="titulo" align="center">
+		{{ titulo}}
+		</h1>
+			{{msg}}
+		{% if lista_merca %}
+			<table >
+					<theader>
+
+						<tr id="titulos">
+							<td><h4>Nombre del producto</h4></td>
+							<td><h4>Nombre del personal</h4></td>
+							<td><h4>Nombre del proveedor</h4></td>
+							<td><h4>Categoria/h4></td>
+							<td><h4>Compania</h4></td>
+							<td><h4>Piezas Ingresadas</h4></td>
+							<td><h4>Fecha Caducidad</h4></td>
+							<td><h4>Feha Ingreso</h4></td>
+							<td><h4>Precio Sugerido</h4></td>
+							<td><h4>Precio Farmacia</h4></td>
+							<td><h4>Descuento Compra</h4></td>
+							<td><h4>Precio Compra</h4></td>
+							<td><h4>Descuento Venta</h4></td>
+							<td><h4>Ganancia</h4></td>
+							<td><h4>Precio Venta</h4></td>
+							<td><h4>Iva</h4></td>
+							<td><h4>Factura</h4></td>
+						</tr>
+						
+					</theader>
+			{% for m in lista_merca %}
+					<tbody>
+						<tr id="registros">
+							<td> {{m.producto.nombre_producto}}</td>
+							<td> {{m.personal.nombre_personal}}</td>
+							<td> {{m.proveedor.nombre_proveedor}}</td>
+							<td> {{m.categoria.nombre_categoria}}</td>
+							<td> {{m.compania.nombre_compania}}</td>
+							<td> {{m.piezas_compra|escape}}</td>
+							<td> {{m.fecha_caducidad}}</td>
+							<td> {{m.fecha_ingreso}}</td>
+							<td> {{m.precio_sugerido|escape}}</td>
+							<td> {{m.precio_farmacia|escape}}</td>
+							<td> {{m.descuento_compra|escape}}</td>
+							<td> {{m.precio_compra|escape}}</td>
+							<td> {{m.descuento_venta}}</td>
+							<td> {{m.ganancia}}</td>
+							<td> {{m.precio_venta|escape}}</td>
+							<td> {{m.iva|escape}}</td>
+							<td> {{m.factura}}</td>
+						</tr>
+					</tbody>
+			{% endfor %}
+			</table>
+		{% else %}
+			<p>No se han encontrado  productos</p>
+		{% endif %}
+
+	</body>
+</html>
+
+
+

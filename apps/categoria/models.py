@@ -5,4 +5,4 @@ class Categoria(models.Model):
 	status = models.BooleanField(default=True)
 	def __unicode__(self):
 		return self.nombre_categoria
-
+	

@@ -21,6 +21,7 @@
 						<ul class="nav nav-list">
 							<li class="nav-header"></li><br>
 								<p aling="justify">
+								{{msg}}
 									<form action="." method="POST">
 									{% csrf_token %}
 									{{ form_user.as_p }}

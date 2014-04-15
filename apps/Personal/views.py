@@ -61,6 +61,18 @@ def view_add_personal(request):
 				'url':url,
 				'msg':info}
 				return render_to_response('personal/mensaje.html',ctx,context_instance=RequestContext(request))
+			else:
+				form_personal = addPersonalForm()
+				form_user = UserForm()
+				status_agregar = "active"
+				msg = "Lo sentimos pero el no se puedo agregar este nuevo empleado \
+				ya que es posible que algunos campos esten mal o simplemete que el nombre\
+				 de usuario que intenta crear ya existe pero esta inactivo"
+				ctx = {'form_user':form_user,
+				'form_personal':form_personal,
+				'msg':msg,
+				'status_agregar':status_agregar}
+				return render_to_response('personal/addPersonal.html',ctx,context_instance=RequestContext(request))
 		else:
 			form_personal = addPersonalForm()
 			form_user = UserForm()

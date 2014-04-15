@@ -7,11 +7,8 @@
 				{% endblock %}
 		</title>
 		<link rel="stylesheet" href="/media/bootstrap/css/bootstrap.css"/>
-		<link rel="stylesheet" href="/media/bootstrap/css/bootstrap.min.css"/>
 		<link rel="stylesheet" href="/media/bootstrap/css/bootstrap-responsive.css"/>
-		<link rel="stylesheet" href="/media/bootstrap/css/bootstrap-responsive.min.css"/>
 		<script src="/media/bootstrap/js/bootstrap.js"></script>
-		<script src="/media/bootstrap/js/bootstrap.min.js"></script>
 		<link rel="stylesheet" href="/media/calendar/themes/base/all.css">
 		<script src="/media/js/jquery-1.4.2.js"></script>
 		<script src="/media/calendar/ui/core.js"></script>
@@ -54,6 +51,16 @@
 						fechaCompleta=dia+"/"+mes+"/"+anio;
 						$( "#id_fechados" ).attr('value',fechaCompleta);
 					});
+	                               $("#id_fecha_caducidad").datepicker();
+						$( "#id_fecha_caducidad" ).change(function() {
+						cadena=$("#id_fecha_caducidad").attr("value");
+						mes = cadena.substring(0,2);
+						dia = cadena.substring(3,5);
+						anio = cadena.substring(6,10);
+						
+						fechaCompleta=dia+"/"+mes+"/"+anio;
+						$( "#id_fecha_caducidad" ).attr('value',fechaCompleta);
+					});
 				});
 
 
@@ -65,7 +72,12 @@
 	
 	</head>
 	<body>
-		{% include 'barraSuperior.html' %}
+		{% if user.is_authenticated %}
+			{% include 'barraSuperior.html' %}
+		{% else %}
+			{% include 'barraSuperiorLogout.html' %}
+			
+		{% endif %}
 		
 		{% block content %}
 			

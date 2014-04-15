@@ -52,7 +52,7 @@ def view_rm_compania(request,id_compania):
 		status_add_compania = "active"
 		compania = Compania.objects.get(pk=id_compania)
 		if request.method == "POST":
-			compania.delete()
+			compania.status = False
 			titulo = "Eliminar una compania"
 			info = "El registro se elimino correctamente"
 			ctx = {'mensaje':info,
