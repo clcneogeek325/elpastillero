@@ -50,6 +50,7 @@
 							<td><h4>Precion Venta</h4></td>
 							<td><h4>Piezas Vendidas</h4></td>
 							<td><h4>Valor Total Piezas Vendidas</h4></td>
+							<td><h4>Descuento %</h4></td>
 						</tr>
 						
 					</theader>
@@ -63,7 +64,7 @@
 							<td> {{p.precio_venta|escape}}</td>
 							<td> {{p.piezas_vendias}}</td>
 							<td> {{p.valor_piezas_vendidas|escape}}</td>
-							
+							<td>{{p.porcentage_descuento|escape}}</td>
 						</tr>
 					</tbody>
 			{% endfor %}

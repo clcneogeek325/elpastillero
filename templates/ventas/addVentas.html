@@ -40,9 +40,9 @@
 													<tr class="success">
 														<td><h4>Nombre Del Producto</h4></td>
 														<td><h4>Total de piezas</h4></td>
-														<td><h4>Precio Compra</h4></td>
 														<td><h4>Precio Venta</h4></td>
 														<td><h4>Valor Total Piezas</h4></td>
+														<td><h4>Descuento %</h4></td>
 														<td></td>
 													</tr>
 													
@@ -52,10 +52,17 @@
 													<tr class="info">
 														<td> {{producto.producto.nombre_producto}}</td>
 														<td> {{producto.numero_piezas}}</td>
-														<td> {{producto.precio_compra}}</td>
 														<td> {{producto.precio_venta}}</td>
 														<td> {{producto.valor_piezas_vendidas}}</td>
+														<td>
+															{% ifequal producto.categoria tipo_medicamento%}
+																{{tipo_medicamento}}
+															{% else %}
+																0
+															{% endifequal %}
+														</td>
 														<td><a class="btn" href="/delProdVenta/{{ producto.id}}"><i class="icon-remove"></i>Eliminar</a></td>
+														
 														
 													</tr>
 												</tbody>

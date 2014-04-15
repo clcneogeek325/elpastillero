@@ -11,28 +11,28 @@ from apps.pc.models import Pc
 
 
 class Tabla_temporal(models.Model):
-	personal = models.ForeignKey(User)
+	personal = models.ForeignKey(Personal)
 	producto = models.ForeignKey(Producto)
 	numero_piezas = models.IntegerField(max_length=5)
 	precio_compra = models.FloatField(max_length=10)
 	precio_venta = models.FloatField(max_length=10)
 	valor_piezas_vendidas = models.FloatField(max_length=10)
 	utilidad = models.FloatField(max_length=10)
+	porcentage_descuento = models.IntegerField(10)
+#	pc = models.ForeignKey(Pc)
 
-	pc = models.ForeignKey(Pc)
-	porcentage_descuento_venta = models.IntegerField(10)
-	total_descuento_producto = models.FloatField(max_length=10)
+#	total_descuento_producto = models.FloatField(max_length=10)
 
 	
 	
 class Venta(models.Model):
-	personal = models.ForeignKey(User)
+	personal = models.ForeignKey(Personal)
 	fecha_venta = models.DateTimeField(default=datetime.datetime.now)
 	total_venta = models.FloatField(max_length=10)
 	utilidad = models.FloatField(max_length=10)
 
-	total_descuento_venta = models.FloatField(max_length=10)
-	pc = models.ForeignKey(Pc)
+#	total_descuento_venta = models.FloatField(max_length=10)
+#	pc = models.ForeignKey(Pc)
 
 
 class Productos_vendidos(models.Model):
@@ -43,6 +43,6 @@ class Productos_vendidos(models.Model):
 	precio_venta = models.FloatField(max_length=10)
 	piezas_vendias = models.IntegerField(max_length=3)
 	valor_piezas_vendidas = models.FloatField(max_length=10)
-	
-	porcentage_descuento_producto = models.IntegerField(10)
+	porcentage_descuento = models.IntegerField(10)
+#	porcentage_descuento_producto = models.IntegerField(10)
 	
