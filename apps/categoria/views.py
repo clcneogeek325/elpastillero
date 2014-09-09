@@ -23,7 +23,7 @@ def view_list_categoriaDel(request):
 		'status_del_producto':status_del_producto,
 		'icono':btn_icon,
 		'titulo':titulo,'status_categoria':'active'}
-		return render_to_response('productos/newProductos/listaCategorias.html',ctx,
+		return render_to_response('categorias/listaCategorias.html',ctx,
 									context_instance=RequestContext(request))
 	else:
 		return HttpResponseRedirect('/login')
@@ -38,7 +38,7 @@ def view_list_categoriaEdit(request):
 		'status_edit_producto':status_edit_producto,
 		'icono':btn_icon,
 		'titulo':titulo,'status_categoria':'active'}
-		return render_to_response('productos/newProductos/listaCategorias.html',ctx,
+		return render_to_response('categorias/listaCategorias.html',ctx,
 									context_instance=RequestContext(request))
 	else:
 		return HttpResponseRedirect('/login')
@@ -59,7 +59,7 @@ def view_add_categoria(request):
 				ctx = {'mensaje':mensaje,
 				'status_add_categoria':status_add_categoria,
 				'titulo':titulo,'status_categoria':'active'}
-				return render_to_response('productos/newProductos/categorias/mensajeCategoria.html',ctx,
+				return render_to_response('categorias/mensajeCategoria.html',ctx,
 										context_instance=RequestContext(request))
 			else:			
 				cats = Categoria.objects.filter(status=True)
@@ -70,7 +70,7 @@ def view_add_categoria(request):
 				ctx = {'form':form,
 				'lista_categorias':cats,
 				'status_add_categoria':status_add_categoria,'status_categoria':'active'}
-				return render_to_response('productos/newProductos/categorias/addCategorias.html',ctx,
+				return render_to_response('categorias/addCategorias.html',ctx,
 										context_instance=RequestContext(request))
 
 
@@ -82,7 +82,7 @@ def view_add_categoria(request):
 			ctx = {'form':form,
 			'lista_categorias':cats,
 			'status_add_categoria':status_add_categoria,'status_categoria':'active'}
-			return render_to_response('productos/newProductos/categorias/addCategorias.html',ctx,
+			return render_to_response('categorias/addCategorias.html',ctx,
 									context_instance=RequestContext(request))
 	else:
 		return HttpResponseRedirect('/login')
@@ -103,7 +103,7 @@ def view_edit_categoria(request,id_categoria):
 				ctx = {'mensaje':msj,
 				'status_add_categoria':status_add_categoria,
 				'titulo':titulo,'status_categoria':'active'}
-				return render_to_response('productos/newProductos/categorias/mensajeCategoria.html',ctx,
+				return render_to_response('categorias/mensajeCategoria.html',ctx,
 										context_instance=RequestContext(request))
 		else:
 			form  = CategoriaForm(instance=cat)
@@ -111,7 +111,7 @@ def view_edit_categoria(request,id_categoria):
 			ctx = {'form':form,
 			'status_add_categoria':status_add_categoria,
 			'status_categoria':'active'}
-			return render_to_response('productos/newProductos/categorias/editCategorias.html',ctx,
+			return render_to_response('categorias/editCategorias.html',ctx,
 										context_instance=RequestContext(request))
 	else:
 		return HttpResponseRedirect('/login')
@@ -127,14 +127,14 @@ def view_rm_categoria(request,id_categoria):
 			ctx = {'mensaje':info,
 					'status_add_categoria':status_add_categoria,
 					'titulo':titulo,'status_categoria':'active'}
-			return render_to_response('productos/newProductos/categorias/mensajeCategoria.html',ctx,
+			return render_to_response('categorias/mensajeCategoria.html',ctx,
 									context_instance=RequestContext(request))
 		else:
 			form = CategoriaForm(instance=cat)
 			status_add_categoria = "active"
 			ctx = {'form':form,
 				   'status_add_categoria':status_add_categoria,'status_categoria':'active'}
-			return render_to_response('productos/newProductos/categorias/rmCategorias.html',
+			return render_to_response('categorias/rmCategorias.html',
 									ctx,context_instance=RequestContext(request))
 	else:
 		HttpResponseRedirect('/login')

@@ -34,7 +34,7 @@
 												</h1>
 												<tr class="success">
 													<td><h4>Nombre</h4</td>
-													<td><h4>Descuento Sobre Venta Del Medicamento Generico</h4></td>
+													<td><h4>Descuento</h4></td>
 													<td></td>
 													<td></td>
 												</tr>
@@ -44,7 +44,8 @@
 											<tbody>
 												<tr class="info">
 													<td>{{ pc.nombre_pc}}</td>
-													<td>{{ pc.descuento_medicamento_generico}} %</td>
+												
+													<td>{{ pc.descuento_medicamento_generico}} % en {{pc.categoria.nombre_categoria}}</td>
 													<td><a class="btn" href="/editPC/{{pc.id}}/"><i class="icon-pencil"></i>Editar</a></td>
 													<td><a class="btn" href="/rmPC/{{pc.id}}/"><i class="icon-remove"></i>Eliminar</a></td>
 												</tr>

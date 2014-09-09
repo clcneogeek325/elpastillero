@@ -60,6 +60,7 @@ def view_delete_proveedor(request,id_proveedor):
 	if request.user.is_authenticated() and request.user.is_staff:
 		p = Proveedores.objects.filter(id=id_proveedor)
 		p.status = False
+		p.save()
 		status_eliminar = "active"
 		msg_btn = "Regresar a la lista"
 		url = "/listProveedoresDel"

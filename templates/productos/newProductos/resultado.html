@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block title %}
+	{{titulo}}
+{% endblock %}
+
+
+{% block content %}
+		<div class="container">
+			<div class="row">
+				<div class="hero-unit">
+					<h1>
+						{{titulo}}
+					</h1>
+					<small>Hola</small>
+				</div>
+			</div>
+			
+			<div class="row">
+				{% include 'productos/newProductos/barraLateralIzquierda.html' %}
+				<div class="span9">
+					<h1 >{{msg}}</h1>
+					
+					
+					<div class="well sidebar-nav">
+						<ul class="nav nav-list">
+							<li class="nav-header"></li><br>
+							{% if lista %}
+							
+							
+					<table class="table table-hover">
+											<theader>
+												<h1>
+													Lista De producto encontrados
+												</h1>
+												<tr class="success">
+													<td><h4>Nombre</h4</td>
+													<td><h4>Categoria</h4></td>
+													<td></td>
+												</tr>
+													
+											</theader>
+										{% for p in lista%}
+											<tbody>
+												<tr class="info">
+													<td><a href="/datos_p/{{p.codigo}}">{{ p.nombre_producto}}</a></td>
+													<td>{{p.categoria.nombre_categoria}}</td>
+													
+												</tr>
+										
+											</tbody>
+										{% endfor %}
+										</table>
+								<div class="pagination">
+								    <span class="step-links">
+									            {% if lista.has_previous %}
+										                <a href="?page={{ lista.previous_page_number }}">previous</a>
+									           {% endif %}
+
+								        <span class="current">
+									            Pagina {{ lista.number }} hasta {{ lista.paginator.num_pages }}.
+								            </span>
+
+								            {% if lista.has_next %}
+								                <a href="?page={{ lista.next_page_number }}">next</a>
+								        {% endif %}
+								    </span>
+						    </div>
+
+
+								
+							{% else %}
+								<h4>Los sentimos pero no se encontraron productos que comiencen con esta letra<h4/>
+								
+							{% endif %}
+
+
+
+
+							<a href="{%url vista_lista_abc%}"><button class="btn btn-large btn-primary">Regresar</button>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+{% endblock %}
+

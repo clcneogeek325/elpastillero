@@ -47,7 +47,7 @@ def view_add_proveedor(request):
 		else:
 			formulario = ProveedorForm()
 			status_agregar = "active"
-			msg = "Llene los siguinetes campoos para agragar un nuevo proveedor"
+			msg = "Llene los siguinetes campoos para agregar un nuevo proveedor"
 			ctx={'form':formulario,
 				'msg':msg,
 				 'status_agregar':status_agregar}

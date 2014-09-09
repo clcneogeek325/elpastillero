@@ -10,10 +10,10 @@ class Producto(models.Model):
 	codigo = models.CharField(primary_key=True,max_length=200)
 	nombre_producto = models.CharField(max_length=200)
 	categoria = models.ForeignKey(Categoria)
-	total_piezas = models.IntegerField(default=0)
+	total_piezas = models.IntegerField(default=1)
 	precio_compra = models.FloatField(max_length=10)
 	precio_venta = models.FloatField(max_length=10)
-	numero_minimo_piezas = models.IntegerField(default=0)
+	numero_minimo_piezas = models.IntegerField(default=1)
 	status = models.BooleanField(default=True)
 	tiene_codigo = models.BooleanField(default=True)
 	def __unicode__(self):

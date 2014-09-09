@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+{% block title %}
+	{{titulo}}
+{% endblock %}
+
+
+{% block content %}
+		<div class="container">
+			<div class="row">
+				<div class="hero-unit">
+					<h5>
+						{{titulo}}
+					</h5>
+					<small>Hola</small>
+				</div>
+			</div>
+			
+			<div class="row">
+				{% include 'productos/newProductos/barraLateralIzquierda.html' %}
+				<div class="span9">
+					
+					
+					
+					<div class="well sidebar-nav">
+						<ul class="nav nav-list">
+							<li class="nav-header"></li><br>
+							<h4>Datos del producto</h4>
+							<br><br>
+																	<table class="table table-hover">
+											<theader>
+												<h1>
+													Datos del producto
+												</h1>
+												<tr class="success">
+													<td><h3>Nombre</h3</td>
+													<td><h3>{{ producto.nombre_producto}}</h3></td>
+													
+												</tr>
+													
+											</theader>
+						
+											<tbody>
+												<tr class="info">
+													<td> <h4>Codigo de Barrras :</h4></td>
+													<td><h4>{{ producto.codigo}}</h4></td>
+													
+												</tr>
+												<tr class="info">
+													<td> <h4>Categoria :</h4></td>
+													<td> 
+														<h4>
+															{{ producto.categoria.nombre_categoria}}
+														</h4>
+													</td>
+												</tr>
+												<tr class="info">
+													<td> <h4>Total_piezas :</h4></td>
+													<td> 
+														<h4>
+															{{ producto.total_piezas}}
+														</h4>
+													</td>
+												</tr>
+										<tr class="info">
+													<td> <h4>Precio Compra :</h4></td>
+													<td> 
+														<h4>
+															{{ producto.precio_compra|escape}}
+														</h4>
+													</td>
+												</tr>
+										<tr class="info">
+													<td> <h4>Precio Venta :</h4></td>
+													<td> 
+														<h4>
+															{{ producto.precio_venta|escape}}
+														</h4>
+													</td>
+												</tr>
+											<tr class="info">
+													<td> <h4>Numero Minimo de piezas :</h4></td>
+													<td> 
+														<h4>
+															{{ producto.numero_minimo_piezas}}
+														</h4>
+													</td>
+												</tr>
+
+
+
+
+
+											<tr class="info">
+													<td> <h4>Precio Sugerido :</h4></td>
+													<td> 
+														<h4>
+															{{ merca.precio_sugerido|escape}}
+														</h4>
+													</td>
+												</tr>
+											<tr class="info">
+													<td> <h4>Precio Farmacia :</h4></td>
+													<td> 
+														<h4>
+															{{ merca.precio_farmacia|escape}}
+														</h4>
+													</td>
+												</tr>
+											<tr class="info">
+													<td> <h4>Descuento Compra :</h4></td>
+													<td> 
+														<h4>
+															{{ merca.descuento_compra|escape}}
+														</h4>
+													</td>
+												</tr>
+												
+											</tbody>
+											<tr class="info">
+													<td> <h4>Descuento venta :</h4></td>
+													<td> 
+														<h4>
+															{{ merca.descuento_venta|escape}}
+														</h4>
+													</td>
+												</tr>
+											<tr class="info">
+													<td> <h4>Ganancia :</h4></td>
+													<td> 
+														<h4>
+															{{ merca.ganancia|escape}}
+														</h4>
+													</td>
+												</tr>
+											<tr class="info">
+													<td> <h4>Iva :</h4></td>
+													<td> 
+														<h4>
+															{{ merca.iva|escape}}
+														</h4>
+													</td>
+												</tr>
+										</table>
+							
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+{% endblock %}
+

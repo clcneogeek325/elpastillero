@@ -2,13 +2,17 @@ from django import forms
 from apps.mercancia.models import Mercancia
 
 class MercanciaForm(forms.ModelForm):
+	def __init__(self, *args, **kwargs):
+		from apps.proveedores.models import Proveedores
+		super(MercanciaForm, self).__init__(*args, **kwargs)
+		self.fields['proveedor'] = forms.ModelChoiceField(queryset=Proveedores.objects.filter(status=True))
 	class Meta:
 		model = Mercancia
 		exclude = {'producto',
 					'personal',
 					'categoria',}
 		widgets = {
-            'fecha_caducidad': forms.TextInput(attrs={'class':'vDateField'}),
+            'fecha_caducidad': forms.TextInput(attrs={'class':''}),
         }
 
 class MercanciaSuperForm(forms.ModelForm):
@@ -24,5 +28,5 @@ class MercanciaSuperForm(forms.ModelForm):
 					'ganancia',
 					}
 		widgets = {
-            'fecha_caducidad': forms.TextInput(attrs={'class':'vDateField'}),
+            'fecha_caducidad': forms.TextInput(attrs={'class':''}),
         }

@@ -15,12 +15,61 @@ from apps.ventas.models import Productos_vendidos
 from apps.reportes.forms import getMejorProveedor
 from apps.productos.models import Mejor_proveedor
 from django.db.models import Avg, Max, Min, Count
-from apps.reportes.forms import getFechaForm,getRangoFechaForm,getCampoForm
+from apps.reportes.forms import getFechaForm,getRangoFechaForm,getCampoForm,getDosFechasForm
 from apps.productos.models import Producto
-from datetime import datetime
+from datetime import datetime,timedelta
 from apps.mercancia.models import Mercancia
 from django.shortcuts import render_to_response
 
+
+
+
+
+def view_corte_de_caja(request):
+	if request.method == "POST":
+		print "Esto fuen un post"
+		form = getDosFechasForm(request.POST) 
+		if form.is_valid():
+			tipo_de_turno = form.cleaned_data['tipo_turno']
+			fecha = str(form.cleaned_data['fecha'])
+			hora1 = 0
+			hora2 = 0
+			if tipo_de_turno == "vt":
+				hora1  = 7
+				hora2 = 18
+			else:	
+				hora1  = 18
+				hora2 = 22
+ 			dt_hora1 = datetime.strptime(("%s %i:00"%(fecha,hora1)), "%Y-%m-%d %H:%M")
+ 			dt_hora2 = datetime.strptime(("%s %i:00"%(fecha,hora2)), "%Y-%m-%d %H:%M")
+			ps = Productos_vendidos.objects.filter(fecha_venta__gte=dt_hora1,fecha_venta__lte=dt_hora2)
+			lista = ps.values_list('producto', flat=True).distinct().order_by()
+			ls_cantidad_prodts = []
+			ls_efectivo_generado = []
+			for x in lista:
+				ls_cantidad_prodts.append(ps.filter(producto=x).aggregate(Sum('piezas_vendias')).__getitem__(0))
+				ls_efectivo_generado.append(ps.filter(producto=x).aggregate(Sum('valor_piezas_vendidas')).__getitem__(0))
+				
+			titulo = "Corte de Caja"
+			msg = "Estos son los productos vendidos"
+			ctx = {'productos':lista,
+					'msg':msg,
+					'ls_cantidad_prodts':ls_cantidad_prodts,
+					'ls_efectivo_generado':ls_efectivo_generado,
+					'titulo':titulo}
+			return render_to_response('reportes/pdf/corte_pdf.html',ctx,
+					context_instance=RequestContext(request))
+		
+		else:
+			form = getDosFechasForm()
+			ctx = {'form':form}
+			return render_to_response('reportes/cortecaja.html',ctx,
+				context_instance=RequestContext(request))
+	else:
+		form = getDosFechasForm()
+		ctx = {'form':form}
+		return render_to_response('reportes/cortecaja.html',ctx,
+			context_instance=RequestContext(request))
 
 
 def view_search_mercancia(request):

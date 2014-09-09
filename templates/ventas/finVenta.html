@@ -26,6 +26,11 @@
 						<ul class="nav nav-list">
 							<li class="nav-header"></li><br>
 								<p aling="justify">
+								<form action="" method="GET">
+								{%csrf_token %}
+								{{form.as_p}}
+								
+								</form>
 								<h1>
 									{{ msg}}
 								</h1>

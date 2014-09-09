@@ -17,6 +17,9 @@ from apps.Personal.models import Personal
 
 def obt_personal(request):
 	return Personal.objects.get(user_id=request.user.id)
+	
+def personal_existe(request):
+	return Personal.objects.filter(user_id=request.user.id)
 
 
 def porce(parte,total):
@@ -86,64 +89,72 @@ def view_delt_producto(request,id_producto):
 
 def view_add_ventas(request,id_producto):
 	if request.user.is_authenticated():
-		print request.user
-		personal = obt_personal(request)
-		lista_tabla = Tabla_temporal.objects.filter(personal_id=personal.id)
-		form = ventasForm()
-		if id_producto != "0":
-			form = ventasForm(initial={'codigo_producto':id_producto})
-		if request.method == "POST":
-			formulario = ventasForm(request.POST)
-			if formulario.is_valid():#obtenemos los datos del formulario
-				id_producto = formulario.cleaned_data['codigo_producto']
-				cantidad_solicitada = formulario.cleaned_data['cantidad']
-				existe_codigo = Producto.objects.filter(pk=id_producto)
-				if existe_codigo:#comprobamos que de verdad exista en la tabla productos
-					datos_producto = Producto.objects.get(pk=id_producto)
-					cantidad_existente = datos_producto.total_piezas
-					existe_enTabla = Tabla_temporal.objects.filter(producto=id_producto,personal_id=personal.id)
-					precio_de_venta = 0.0
-					#saber si tiene descuento
-					P = obt_personal(request)
-					if P.pc.categoria == datos_producto.categoria:
-						precio_de_venta = p(P.pc.porcentage_descuento,datos_producto.precio_venta)
-						print "es generico"
-					else:
-						precio_de_venta = datos_producto.precio_venta
-						#====================
-					if existe_enTabla:#comprobamos si el producto exite y ane la tabla temporal
-						datos_prod_exist = Tabla_temporal.objects.get(producto=id_producto,personal_id=personal.id)
-						cantidad_en_tabla = datos_prod_exist.numero_piezas
-						cantidad_total_solicitada = cantidad_en_tabla + cantidad_solicitada
-						if cantidad_total_solicitada < cantidad_existente:#comprobamos que la las piezas solicitadas sea menor
-							datos_prod_exist.numero_piezas = cantidad_total_solicitada# que las piezas existenetes
-							datos_prod_exist.valor_piezas_vendidas = cantidad_total_solicitada * precio_de_venta
-							datos_prod_exist.utilidad = (precio_de_venta - datos_producto.precio_compra)* cantidad_total_solicitada
-							datos_prod_exist.save()
-							return HttpResponseRedirect('/addVentas/0/')
+		if Personal.objects.exists() and request.id:
+			personal = obt_personal(request)
+			lista_tabla = Tabla_temporal.objects.filter(personal_id=personal.id)
+			form = ventasForm()
+			if id_producto != "0":
+				form = ventasForm(initial={'codigo_producto':id_producto})
+			if request.method == "POST":
+				formulario = ventasForm(request.POST)
+				if formulario.is_valid():#obtenemos los datos del formulario
+					id_producto = formulario.cleaned_data['codigo_producto']
+					cantidad_solicitada = formulario.cleaned_data['cantidad']
+					existe_codigo = Producto.objects.filter(pk=id_producto)
+					if existe_codigo:#comprobamos que de verdad exista en la tabla productos
+						datos_producto = Producto.objects.get(pk=id_producto)
+						cantidad_existente = datos_producto.total_piezas
+						existe_enTabla = Tabla_temporal.objects.filter(producto=id_producto,personal_id=personal.id)
+						precio_de_venta = 0.0
+						#saber si tiene descuento
+						P = obt_personal(request)
+						if P.pc.categoria == datos_producto.categoria:
+							precio_de_venta = p(P.pc.porcentage_descuento,datos_producto.precio_venta)
+							print "es generico"
 						else:
-							cuenta_total = obtener_total_venta(personal.id)
-							msg = "No se puede agregar %i piezas ya que solo existen %i \
-									piezas del producto"%(cantidad_total_solicitada,cantidad_existente)
-							ctx = {'lista_tabla':lista_tabla,
-									'form':form,
-									'msg':msg,
-									'venta_total':cuenta_total}
-							return render_addVentas(request,ctx)
+							precio_de_venta = datos_producto.precio_venta
+							#====================
+						if existe_enTabla:#comprobamos si el producto exite y ane la tabla temporal
+							datos_prod_exist = Tabla_temporal.objects.get(producto=id_producto,personal_id=personal.id)
+							cantidad_en_tabla = datos_prod_exist.numero_piezas
+							cantidad_total_solicitada = cantidad_en_tabla + cantidad_solicitada
+							if cantidad_total_solicitada < cantidad_existente:#comprobamos que la las piezas solicitadas sea menor
+								datos_prod_exist.numero_piezas = cantidad_total_solicitada# que las piezas existenetes
+								datos_prod_exist.valor_piezas_vendidas = cantidad_total_solicitada * precio_de_venta
+								datos_prod_exist.utilidad = (precio_de_venta - datos_producto.precio_compra)* cantidad_total_solicitada
+								datos_prod_exist.save()
+								return HttpResponseRedirect('/addVentas/0/')
+							else:
+								cuenta_total = obtener_total_venta(personal.id)
+								msg = "No se puede agregar %i piezas ya que solo existen %i \
+										piezas del producto"%(cantidad_total_solicitada,cantidad_existente)
+								ctx = {'lista_tabla':lista_tabla,
+										'form':form,
+										'msg':msg,
+										'venta_total':cuenta_total}
+								return render_addVentas(request,ctx)
+						else:
+							padd = Tabla_temporal(producto_id=id_producto,
+									numero_piezas=cantidad_solicitada,
+									precio_compra=datos_producto.precio_compra,
+									precio_venta=precio_de_venta,
+									valor_piezas_vendidas=cantidad_solicitada*precio_de_venta,
+									utilidad=(precio_de_venta-datos_producto.precio_compra)*cantidad_solicitada,
+									personal_id=personal.id,
+									porcentage_descuento=0)
+							padd.save()
+							return HttpResponseRedirect('/addVentas/0/')
 					else:
-						padd = Tabla_temporal(producto_id=id_producto,
-								numero_piezas=cantidad_solicitada,
-								precio_compra=datos_producto.precio_compra,
-								precio_venta=precio_de_venta,
-								valor_piezas_vendidas=cantidad_solicitada*precio_de_venta,
-								utilidad=(precio_de_venta-datos_producto.precio_compra)*cantidad_solicitada,
-								personal_id=personal.id,
-								porcentage_descuento=0)
-						padd.save()
-						return HttpResponseRedirect('/addVentas/0/')
+						cuenta_total = obtener_total_venta(personal.id)
+						msg = "El codigo de barrras ingresado no existe o aun no se ha ingresado en el sistema"
+						ctx = {'lista_tabla':lista_tabla,
+								'form':form,
+								'msg':msg,
+								'venta_total':cuenta_total}
+						return render_addVentas(request,ctx)
 				else:
 					cuenta_total = obtener_total_venta(personal.id)
-					msg = "El codigo de barrras ingresado no existe o aun no se ha ingresado en el sistema"
+					msg = "Los datos del formulario no son corectos, revise bien por fabor"
 					ctx = {'lista_tabla':lista_tabla,
 							'form':form,
 							'msg':msg,
@@ -151,21 +162,15 @@ def view_add_ventas(request,id_producto):
 					return render_addVentas(request,ctx)
 			else:
 				cuenta_total = obtener_total_venta(personal.id)
-				msg = "Los datos del formulario no son corectos, revise bien por fabor"
+				print "Fue un GET"
+				msg = "Agregar productos al carrito de compras"
 				ctx = {'lista_tabla':lista_tabla,
 						'form':form,
 						'msg':msg,
 						'venta_total':cuenta_total}
 				return render_addVentas(request,ctx)
 		else:
-			cuenta_total = obtener_total_venta(personal.id)
-			print "Fue un GET"
-			msg = "Agregar productos al carrito de compras"
-			ctx = {'lista_tabla':lista_tabla,
-					'form':form,
-					'msg':msg,
-					'venta_total':cuenta_total}
-			return render_addVentas(request,ctx)
+			return render_to_response('ventas/errorPersonal.html',context_instance=RequestContext(request))
 	else:
 		return HttpResponseRedirect('/login')
 
@@ -191,7 +196,7 @@ def obtener_total_utilidad_venta(personal):
 
 def view_vender(request):
 	if request.user.is_authenticated():
-		personal = obt_personal(request,request.user.id)
+		personal = obt_personal(request)
 		if request.method == "POST":
 			form = ventasForm()
 			lista_tabla = Tabla_temporal.objects.filter(personal_id=personal.id)

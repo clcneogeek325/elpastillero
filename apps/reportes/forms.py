@@ -27,5 +27,12 @@ class getCampoForm(forms.Form):
 			
 			
 			
-			
+
+class getDosFechasForm(forms.Form):
+	ls_turnos = (('mt','Matutino (de 7:00 am hasta las 6:pm)'),
+			('vt','Vespertino (de 6:00 pm hasta las 12:00 pm)'),
+				)
+	tipo_turno = forms.ChoiceField(choices=ls_turnos,label="Tipo Hora")
+	fecha = forms.DateField(label="Fecha")
+
 

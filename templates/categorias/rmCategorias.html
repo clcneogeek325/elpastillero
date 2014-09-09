@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}
+	Eliminar categorias
+{% endblock %}
+
+{% block content %}
+		<div class="container">
+			<div class="row">
+				<div class="hero-unit">
+					<h1>
+						Dar de baja a una categoria
+					</h1>
+					<small>Hola</small>
+				</div>
+			</div>
+			
+			<div class="row">
+			{% include 'home/barraLateralIzquierdo.html' %}
+				<div class="span9">
+					<div class="well sidebar-nav">
+						<ul class="nav nav-list">
+							<li class="nav-header"></li><br>
+								<form action="" method="POST">
+								{% csrf_token %}
+								{{ form.as_p }}
+									<button class="btn btn-large btn-primary">Eliminar</button>
+									</form>
+								</p>
+						</ul>
+				</div>
+			</div>
+		</div>
+
+{% endblock %}
+

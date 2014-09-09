@@ -7,4 +7,4 @@ class Farmacia(models.Model):
 	status = models.BooleanField(default=True)
 	
 	def __unicode__(self):
-		return nombre
+		return self.nombre

@@ -9,5 +9,5 @@ urlpatterns = patterns('apps.Personal.views',
 	url(r'^listPersonalDel/$', 'view_list_personal_delete', name='vista_lista_personal_eliminar'),
 	url(r'^listPersonalEdit/$', 'view_list_personal_edit', name='vista_lista_personal_actualizar'),
 	url(r'^editPasswd/(?P<id_user>.*)/$', 'view_change_paswd', name='vista_cambiar_contrasenia'),
-	
+	url(r'^addRoot/(?P<id_user>.*)/$', 'view_add_root', name='vista_agregar_poersmisos'),
 )

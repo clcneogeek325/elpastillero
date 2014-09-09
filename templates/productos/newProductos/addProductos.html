@@ -4,6 +4,7 @@
 {% endblock %}
 
 {% block content %}
+	<>
 		<div class="container">
 			<div class="row">
 				<div class="hero-unit">
@@ -26,43 +27,6 @@
 									{% csrf_token %}
 									{{ form_producto.as_p }}
 									{{ form_mercancia.as_p}}
-						{% comment %}
-																<p>Codigo de barras :</p>
-									{{ form_producto.codigo }}
-									<p>Nombre del producto</p>
-									{{ form_producto.nombre_producto}}
-									<p>Categoria</p>
-									{{ form_producto.categoria}}
-									<p>Numero de piezas </p>
-									{{ form_producto.total_piezas }}
-									<p> Numero Minimo de piezas </p>
-									{{ form_producto.numero_minimo_piezas }}
-									<p>Nombre de proveedor </p>
-									{{ form_mercancia.proveedor }}
-									<p>Nombre de la Compania</p>
-									{{ form_mercancia.compania}}
-									<p>Fecha de caducidad</p>
-									{{ form_mercancia.fecha_caducidad }}
-									<p> Fecha de ingreso</p>
-									{{form_mercancia.fecha_ingreso }}
-									<p>Precio Sugerido </p>
-									{{ form_mercancia.precio_sugerido }}
-									<p>Precio Farmacio </p>
-									{{ form_mercancia.precio_farmacia}}
-									<p>Descuento de compra</p>
-									{{ form_mercancia.descuento_compra }}
-									<p>Precio Compra</p>
-									{{ form_mercancia.precio_compra}}
-									<p>Descuento Venta</p>
-									{{ form_mercancia.descuento_venta}}
-									<p>Precio Venta</p>
-									{{form_mercancia.precio_venta}}
-									<p>Ganancia</p>
-									{{form_mercancia.ganancia }}
-									<p>Iva</p>
-									{{form_mercancia.iva}}<br>
-									
-						{% endcomment %}
 								   						<a href=""><button class="btn btn-primary btn-large">Dar de Alta</button></a>
 							</form>
 								</p>

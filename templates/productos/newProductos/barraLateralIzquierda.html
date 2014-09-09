@@ -1,10 +1,33 @@
 <div class="span3">
 	<ul class="nav nav-list">
 		<li class="nav nav-header">Nuevo</li>
-		<li class="{{ status_add_producto }}"><a href="{% url vista_tipo_producto %}">Dar de Alta</a></li>
-		<li class=" {{ status_del_producto }} " ><a href="{% url vista_obtener_codigo_eliminar %}">Dar de baja productos</a></li>
-		<li class=" {{ status_edit_producto}}" ><a href="{% url  vista_obtener_codigo_actualizar %}">Actualizar datos de un producto</a></li>
+        <li class="{{ status_add_producto }}">
+             <a href="{% url vista_tipo_producto %}">
+                     Dar de Alta
+             </a>
+        </li>
+        <li class=" {{ status_del_producto }} " >
+                <a href="{% url vista_obtener_codigo_eliminar %}">
+                        Dar de baja productos
+                </a>
+        </li>
+                <li class=" {{ status_edit_producto}}" >
+                    <a href="{% url  vista_obtener_codigo_actualizar %}">Actualizar datos de un producto</a>
+                </li>
+	<li class="nav nav-header">Busquedas</li>
+    <li class="{{status_lista_abc}}" >
+        <a href="{% url  vista_lista_abc %}">
+                Lista productos Alfabeticamente
+        </a>
+    </li>
+    <li class="{{status_search}}" >
+        <a href="{%url vista_get_nombre%}">
+                    Busqueda
+       </a>
+    </li>
 
+	<li class="nav nav-header">Ultimos productos Agregados</li>
+    <div id="prod"></div>
 	</ul>
-|
+
 </div>

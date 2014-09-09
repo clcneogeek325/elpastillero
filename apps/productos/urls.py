@@ -18,5 +18,12 @@ urlpatterns = patterns('apps.productos.views',
     url(r'^tipo/$', 'view_tipo', name='vista_tipo_producto'),
     url(r'^productoSinCodigoGet/$', 'view_p_sinCodigo_get', name='vista_obtener_Codigo_producto_sin_codigo'),
     url(r'^addProductoSinCodigo/(?P<id_producto>.*)/$', 'view_add_produc_sin_cod', name='vista_agregar_nuevo_producto_sin_codigo'),
-   
+    
+    url(r'^listaabc/$','view_lista_abc',name='vista_lista_abc'),
+    url(r'^busqueda/(?P<letra>.*)/$','view_busqueda',name='vista_busqueda'),
+    url(r'^datos_p/(?P<id>.*)/$','view_datos',name='vista_datos'),
+    url(r'^busqueda_x_nombre/(?P<nombre>.*)/$','view_busqueda_x_nombre',name='vista_busqueda_x_nombre'),
+    url(r'^get_nombre/$','view_get_nombre',name='vista_get_nombre'),
+    url(r'^busqueda_x_categoria/(?P<id>.*)/$','view_busqueda_x_categoria',name='vista_busqueda_x_categoria'),
+
 )

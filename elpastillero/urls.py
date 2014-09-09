@@ -18,6 +18,8 @@ urlpatterns = patterns('',
 	url(r'^', include('apps.ventas.urls')),
 	url(r'^', include('apps.reportes.urls')),
 	url(r'^', include('apps.pc.urls')),
+	url(r'^', include('apps.ws.urls')),
+
 	
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

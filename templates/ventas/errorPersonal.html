@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}
+	Venta de productos
+
+{% endblock %}
+
+{% block content %}
+		<div class="container">
+		
+		<br><br><br>			
+			<div class="row">
+
+			{% include 'ventas/barraLateralIzquierdo.html' %}
+				
+				<div class="span8">
+					<div class="well sidebar-nav">
+						<ul class="nav nav-list">
+							<li class="nav-header"></li>
+								<h1>Es posible que no haya emnpleados registrados o que usted no es logueado con una cuenta registrada </h1>
+								<a href="/addPersonal"><button class="btn btn-primary btn-large">Agregar Un Empleado</button></a>
+								<a href="/logout"><button class="btn btn-primary btn-large">Inciar sesion con otra cuenta</button></a>
+						</ul>
+					</div>
+				</div>
+			</div>
+							
+		</div>
+
+{% endblock %}
+

@@ -7,6 +7,22 @@ from django.http import HttpResponseRedirect
 from apps.Personal.forms import UserForm,ChangePasswdForm
 
 
+def view_add_root(request,id_user):
+	us = User.objects.get(pk=id_user)
+	es = ""
+	if us.is_staff == False:
+		us.is_staff = True
+	else:
+		us.is_staff = False
+		es = "no"
+	us.save()
+	titulo  = "Estamos dando permisos a un usuario"
+	msg = "Ahora %s %s es adminisrador." % (us.username,es)
+	url = "/listPersonalEdit/"
+	ctx = {'msg':msg,
+		'url':url}
+	return render_to_response('personal/mensaje.html',ctx,context_instance=RequestContext(request))
+
 def view_change_paswd(request,id_user):
 	if request.user.is_authenticated() and request.user.is_staff:
 		if request.method == "POST":

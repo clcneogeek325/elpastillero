@@ -16,12 +16,16 @@
 			
 			<div class="row">
 				{% include 'personal/BarraLateralIzquierda.html' %}
-					<div class="span9">
+					<div class="span10">
 
 						<div class="well sidebar-nav">
 							<ul class="nav nav-list">
 								<li class="nav-header"></li><br>
 									<p aling="justify">				
+
+                                <a href="{% url vista_agregar_personal %}"><button class="btn btn-primary btn-large">Agregar Personal</button> </a>
+
+                                    
 									{% if lista_personal%}
 										<table class="table table-hover">
 											<theader>
@@ -32,8 +36,9 @@
 													<td><h4>Nombre</h4></td>
 													<td><h4>Apelldo Paterno</h4></td>
 													<td><h4>Apellido Materno<h4></td>
-													<td><h4>Telefono<h4></td>
-													<td><h4>Email<h4></td>
+													<td><h4>Es Administador<h4></td>
+													<td></td>
+													<td></td>
 													<td></td>
 													<td></td>
 												</tr>
@@ -45,10 +50,20 @@
 													<td>{{ empleado.nombre}}</td>
 													<td>{{ empleado.apellido_Paterno}}</td>
 													<td>{{ empleado.apellido_Materno}}</td>
-													<td>{{ empleado.telefono}}</td>
-													<td>{{ empleado.email}}</td>
+													{% if empleado.user.is_staff %}
+													
+													<td>Si</td>
 													<td><a class="btn" href="/editPersonal/{{empleado.id}}/"><i class="icon-pencil"></i>Editar</a></td>
+													<td><a class="btn" href="/addRoot/{{empleado.user_id}}/">Convertir a usuario Normal<i class="icon-pencil"></i></a></td>
+													{%else%}
+													<td>No</td>
+													<td><a class="btn" href="/editPersonal/{{empleado.id}}/"><i class="icon-pencil"></i>Editar</a></td>
+													<td><a class="btn" href="/addRoot/{{empleado.user_id}}/">Convertir en Adminsitrador<i class="icon-pencil"></i></a></td>
+													{% endif %}
+													
+													
 													<td><a class="btn" href="/editPasswd/{{empleado.user_id}}/"><i class="icon-thumbs-up"></i>Cambiar Comtrasenia</a></td>
+													<td><a id="calendar" class="btn" href="/rmPersonal/{{empleado.id}}/"><i class="icon-remove"></i>Eliminar</a></td>
 												</tr>
 										
 											</tbody>

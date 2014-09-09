@@ -1,0 +1,30 @@
+<html>
+
+
+{% if lista_p %}
+		Farmacia y Minisuper El Pastillero
+		<br><br>
+		Articulos<br>
+		Precio---Cantidad---Total----Descuento % <br>
+		{% for p in lista_p %}
+		{{p.producto}}<br>
+		${{p.precio_venta|escape}}------{{p.numero_piezas}}-----------${{p.valor_piezas_vendidas|escape}}------{{p.porcentage_descuento}}<br>
+		{% endfor %}
+		<br>
+		Total Venta : ${{total|escape}}<br><br>
+		
+		Gracias por su compra<br>
+		vuelva pronto, tenemos mucho<br>
+		que vender.
+
+<form action="" method="GET">
+<span>
+<input name="imprimir" value="Imprimir" onclick="window.print();" type="button"></input>
+</span>
+</form>
+
+{% else %}
+	Lo sentimos pero no se han encontrado ,
+	productos en el carrito de compras.
+{% endif %}
+</html>
